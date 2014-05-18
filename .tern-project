@@ -1,0 +1,14 @@
+{
+  "libs": [
+    "browser",
+    "jquery"
+  ],
+  "loadEagerly": [],
+  "dontLoad": [
+    "./public/**/*.js",
+    "./_source/assets/js/**/*.js"
+  ],
+  "plugins":{
+    "node": {}
+  }
+}

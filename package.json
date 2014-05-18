@@ -1,0 +1,18 @@
+{
+    "name": "FrankyMartz.com",
+    "author": "Francisco Martinez",
+    "version": "1.0.0",
+    "description": "The portfolio and website of Francisco Martinez.",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:FrankyMartz/frankymartz.git"
+    },
+    "scripts": {
+        "test": "echo \"Hello!\" && exit 0"
+    },
+    "jshintConfig": {
+        "node": "true",
+        "jquery": "true",
+        "browser": "true"
+    }
+}

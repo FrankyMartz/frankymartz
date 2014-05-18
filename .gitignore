@@ -1,1 +1,7 @@
-_site
+public/
+_drafts/
+node_modules/
+.DS_Store
+*.swp
+tags
+

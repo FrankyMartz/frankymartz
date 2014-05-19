@@ -1,18 +1,35 @@
 {
-    "name": "FrankyMartz.com",
-    "author": "Francisco Martinez",
-    "version": "1.0.0",
-    "description": "The portfolio and website of Francisco Martinez.",
-    "repository": {
-        "type": "git",
-        "url": "git@github.com:FrankyMartz/frankymartz.git"
-    },
-    "scripts": {
-        "test": "echo \"Hello!\" && exit 0"
-    },
-    "jshintConfig": {
-        "node": "true",
-        "jquery": "true",
-        "browser": "true"
-    }
+  "name": "FrankyMartz.com",
+  "author": "Francisco Martinez",
+  "version": "1.0.0",
+  "description": "The portfolio and website of Francisco Martinez.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FrankyMartz/frankymartz.git"
+  },
+  "scripts": {
+    "test": "echo \"Hello!\" && exit 0"
+  },
+  "jshintConfig": {
+    "node": "true",
+    "jquery": "true",
+    "browser": "true"
+  },
+  "devDependencies": {
+    "browserify": "^4.1.5",
+    "browserify-shim": "^3.5.0",
+    "glob": "^3.2.9",
+    "gulp": "^3.6.2",
+    "gulp-autoprefixer": "0.0.7",
+    "gulp-clean": "^0.2.4",
+    "gulp-minify-css": "^0.3.4",
+    "gulp-notify": "^1.2.5",
+    "gulp-rev": "^0.3.2",
+    "gulp-streamify": "0.0.5",
+    "gulp-stylus": "^1.0.1",
+    "gulp-util": "^2.2.14",
+    "stylus": "^0.45.1",
+    "vinyl-source-stream": "^0.1.1",
+    "watchify": "^0.10.1"
+  }
 }

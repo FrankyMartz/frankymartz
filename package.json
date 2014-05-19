@@ -15,6 +15,12 @@
     "jquery": "true",
     "browser": "true"
   },
+  "browserify-shim": {
+    "jquery": "global:$"
+  },
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
   "devDependencies": {
     "browserify": "^4.1.5",
     "browserify-shim": "^3.5.0",

@@ -32,6 +32,7 @@ var errorHandler = require('../util/errorHandler');
 /**
  * Module must be loaded through Package Loader (index.js)
  * @param {String} name - String for Gulp Task reference
+ * @param {Array.<String>} [dep] - Gulp Task Dependencies
  * @param {StylModuleOpts} args - Configuration options for task
  * @throws {Error} Require argument <args> typeof Object
  * @throws {Error} Require arguments <args>.src && <args>.dest
@@ -39,7 +40,7 @@ var errorHandler = require('../util/errorHandler');
  * @throws {TypeError} <args>.autoprefixer must be typeof Array
  * @throws {TypeError} <args>.minifycss must be typeof Object
  */
-module.exports = function(name, args) {
+module.exports = function(name, dep, args) {
   // Throw Errors
   if (args || typeof args === 'object') {
     if (!args.src || !args.dest) {
@@ -64,7 +65,7 @@ module.exports = function(name, args) {
   args.autoprefixer = args.autoprefixer || ['last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'];
   args.minifycss = args.minifycss || {};
   // Build Gulp Task
-  gulp.task(name, function() {
+  gulp.task(name, dep, function() {
     return gulp.src(args.src)
       .pipe(stylus(args.stylus))
       .on('error', errorHandler)

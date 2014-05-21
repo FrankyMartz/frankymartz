@@ -9,17 +9,18 @@
  * g.addTask('clean', ['./public/css/', './public/js/']);
  */
 var gulp = require('gulp');
-var clean = require('clean');
+var clean = require('gulp-clean');
 /**
  * @param {String} name - String used to reference gulp task
+ * @param {Array.<String>} [dep] - Gulp Task Dependencies
  * @param {Array.<String>} source - Array of string paths to clean
  * @throws {Error} Requires <source> argument typeof Array
  */
-module.exports = function(name, source) {
+module.exports = function(name, dep, source) {
     if (!source || !Array.isArray(source)) {
       throw new Error('Clean module requires <source> argument typeof Array.<String>');
     }
-    gulp.task(name, function() {
+    gulp.task(name, dep, function() {
         // Flatten possible multidimensional Array
         var paths = [].concat.apply([], source);
         return gulp.src(paths, {read: false})

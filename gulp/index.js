@@ -16,14 +16,19 @@ module.exports = {
    *
    * @method addTask
    * @param {String} name - User task to load in module:./gulp/task/
-   * @param {*} options - Configuration for task. (Refer to module docs).
+   * @param {Array} [dep] - Gulp Task dependencies
+   * @param {*} opts - Configuration for task. (Refer to module docs).
    * @throws {TypeError} Requires argument <name> typeof String
    */
-  addTask: function(name, options) {
+  addTask: function(name, dep, opts) {
     if (!name || typeof name !== 'string') {
       throw new Error('addTask: requires module <name> typeof String.');
     }
+    if (!opts) {
+      opts = dep;
+      dep = undefined;
+    }
     var path = './task/' + name;
-    require(path)(name, options);
+    require(path)(name, dep, opts);
   }
 };

@@ -27,20 +27,21 @@ var rev = require('gulp-rev');
  * Reference [Browserify]{@link github.com/substack/node-browserify} for API
  * configuration options.
  * @summary module:gulp/browserify Configuration Object
- * @typedef {object} BrowserifyModuleOpts
- * @property {array.<string>} src - File or Glob to process
- * @property {string} dest - Destination of output
+ * @typedef {Object} BrowserifyModuleOpts
+ * @property {Array.<String>} src - File or Glob to process
+ * @property {String} dest - Destination of output
  */
 
 /**
  * Module must be loaded through Package Loader (index.js)
- * @param {string} name - String for Gulp Task reference
+ * @param {String} name - String for Gulp Task reference
+ * @param {Array.<String>} [dep] - Gulp Task Dependencies
  * @param {BrowserifyModuleOpts} args - Configuration options for task
  * @throws {Error} Require argument <args> typeof Object
  * @throws {Error} Require <args>.src typeof Array
  * @throws {Error} Require <args>.dest typeof String
  */
-module.exports = function(name, args) {
+module.exports = function(name, dep, args) {
   // Throw Errors
   if (args || typeof args !== 'object') {
     if (!args.src || !Array.isArray(args.src)) {
@@ -62,7 +63,7 @@ module.exports = function(name, args) {
   );
 
   function browserifyFile(element) {
-    gulp.task(element, function() {
+    gulp.task(element, dep, function() {
       var opts = args.browserify || {};
       var data = {};
 

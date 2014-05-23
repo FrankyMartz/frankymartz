@@ -13,7 +13,12 @@
   "jshintConfig": {
     "node": "true",
     "jquery": "true",
-    "browser": "true"
+    "browser": "true",
+    "curly": "true",
+    "eqeqeq": "true",
+    "undef": "true",
+    "forin": "true",
+    "unused": "true"
   },
   "browserify-shim": {
     "jquery": "global:$"

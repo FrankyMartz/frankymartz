@@ -1,0 +1,58 @@
+/* =============================================
+ * Base
+ * ========================================== */
+
+@require "../util/mixins"
+
+/* IE10: Windows 8, Windows Phone 8
+ * Doesn't differentiate device width from viewport width
+ */
+@-ms-viewport
+	width: device-width
+
+
+/* Fix Mobile Font Sizing */
++responsiveBreakPoint($view-xs)
+	html
+		-webkit-text-size-adjust: 100%
+		-moz-text-size-adjust: 100%
+		-ms-text-size-adjust: 100%
+
+body
+	position: relative
+	font-family: $font-serif
+	font-size: 1rem
+	font-smoothing(true)
+	line-height: 1.5rem
+	color: $color-text
+	background-color: $color-background
+	box-sizing: border-box
+
+h1,h2,h3,h4,h5,h6
+	font-family: $font-sans
+	font-weight: 700
+
+a
+	color: $color-link
+	margin: -0.2rem
+	padding: 0.2rem
+	text-decoration: none
+	&:visited
+		color: $color-link-visited
+	&:hover
+		color: $color-link-hover
+		text-decoration: underline
+	&:active
+		color: $color-text
+
+::selection
+	color: $color-selection-text
+	background-color: $color-selection-background
+
+.content
+	position: relative
+	width: 100%
+	margin: 0 auto
+	clearfix()
+	box-sizing: border-box
+

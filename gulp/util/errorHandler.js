@@ -9,10 +9,11 @@ var notify = require('gulp-notify');
  * @mixin errorHandler
  */
 module.exports = function() {
+  var args = Array.prototype.slice.call(arguments);
   notify.onError({
     title: 'Compile Error',
     message: "<%= error.message %>"
-  }).apply(this, arguments);
+  }).apply(this, args);
   // Prevent GulpJS from hanging.
   this.emit('end');
 };

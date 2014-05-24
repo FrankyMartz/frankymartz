@@ -2,11 +2,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.description }}">
+    <meta name="author" content="{{ site.author }}">
+    <meta name="copyright" content="Copyright {{ site.author }}. All Rights Reserved.">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-
+    <!-- Icons -->
+    {% assign iconBaseURL =  '/assets/img/root/' %}
+    <link rel="icon" type="image/png" href="{{ 'favicon.png' | prepend: iconBaseURL }}">
+    <link rel="shortcut icon" type="image/ico" href="{{ 'favicon.ico' | prepend: iconBaseURL}}">
+    <link rel="apple-touch-icon" href="{{ 'touch-icon-iphone.png' | prepend: iconBaseURL }}">
+    <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad.png' | prepend: iconBaseURL }}" sizes="76x76">
+    <link rel="apple-touch-icon" href="{{ 'touch-icon-iphone-retina.png' | prepend: iconBaseURL }}" sizes="120x120">
+    <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad-retina.png' | prepend: iconBaseURL }}" sizes="152x152">
+    <meta name="msapplication-config" content="{{ 'ieconfig.xml' | prepend: site.baseurl }}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    {% if page.stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/page/' | append: page.stylesheet }}">
+    {% endif %}
+    {% if page.syntax %}
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
+    {% endif %}
+    <!-- JavaScript -->
+    {% if page.jsPrepend %}
+    <script type="text/javascript" src="{{ '/assets/js/page/' | append: page.jsPrepend }}">
+    {% endif %}
 </head>

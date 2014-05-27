@@ -1,31 +1,65 @@
+{% assign img_url = '/assets/img/' %}
+{% assign icon_url = '/assets/img/root/' %}
+{% assign css_url = '/assets/css/' %}
+{% assign js_url = '/assets/js/' %}
+{% comment %}
+<!-- Optimization is occuring where this only runs once at index home page. -->
+{% assign page_url = {{ page.url | replace:'index.html','' | prepend: site.url }} %}
+{% endcomment %}
+
+{% if page.title %}
+  {% capture title %}{{ page.title | prepend: ' - ' | prepend: site.title }}{% endcapture %}
+{% else %}
+  {% assign title = site.title %}
+{% endif %}
+
+{% if page.excerpt %}
+  {% capture description %}{{ page.excerpt | strip_html | strip_newlines }}{% endcapture %}
+{% else %}
+  {% assign description = site.description %}
+{% endif %}
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.description }}">
-    <meta name="author" content="{{ site.author }}">
-    <meta name="copyright" content="Copyright {{ site.author }}. All Rights Reserved.">
-    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-    <!-- Icons -->
-    {% assign iconBaseURL =  '/assets/img/root/' %}
-    <link rel="icon" type="image/png" href="{{ 'favicon.png' | prepend: iconBaseURL }}">
-    <link rel="shortcut icon" type="image/ico" href="{{ 'favicon.ico' | prepend: iconBaseURL}}">
-    <link rel="apple-touch-icon" href="{{ 'touch-icon-iphone.png' | prepend: iconBaseURL }}">
-    <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad.png' | prepend: iconBaseURL }}" sizes="76x76">
-    <link rel="apple-touch-icon" href="{{ 'touch-icon-iphone-retina.png' | prepend: iconBaseURL }}" sizes="120x120">
-    <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad-retina.png' | prepend: iconBaseURL }}" sizes="152x152">
-    <meta name="msapplication-config" content="{{ 'ieconfig.xml' | prepend: site.baseurl }}">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
-    {% if page.stylesheet %}
-    <link rel="stylesheet" type="text/css" href="{{ '/assets/css/page/' | append: page.stylesheet }}">
-    {% endif %}
-    {% if page.syntax %}
-    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
-    {% endif %}
-    <!-- JavaScript -->
-    {% if page.jsPrepend %}
-    <script type="text/javascript" src="{{ '/assets/js/page/' | append: page.jsPrepend }}">
-    {% endif %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ site.description }}">
+  <meta name="author" content="{{ site.author }}">
+  <meta name="copyright" content="Copyright {{ site.author }} 2014. All Rights Reserved.">
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+  <!-- facebook -->
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:site_name" content="frankymartz">
+  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image" content="{{ page.og_image | ifelse: page.og_image, 'root/ogimage.png' | prepend: img_url }}">
+  <!-- twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:description" content="{{ description  }}">
+  {% if page.twitter_image %}
+  <meta name="twitter:image" content="{{ page.twitter_image | prepend:img_url }}">
+  {% endif %}
+  <!-- icons -->
+  <link rel="icon" type="image/png" href="{{ 'favicon.png' | prepend: icon_url }}">
+  <link rel="shortcut icon" type="image/ico" href="{{ 'favicon.ico' | prepend: icon_url}}">
+  <link rel="apple-touch-icon" href="{{ 'touch-icon-iphone.png' | prepend: icon_url }}">
+  <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad.png' | prepend: icon_url }}" sizes="76x76">
+  <link rel="apple-touch-icon" href="{{ 'touch-icon-iphone-retina.png' | prepend: icon_url }}" sizes="120x120">
+  <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad-retina.png' | prepend: icon_url }}" sizes="152x152">
+  <meta name="msapplication-config" content="{{ '/ieconfig.xml' }}">
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+  {% comment %}<link rel="stylesheet" type="text/css" href="{{ 'main.css' | prepend: css_url }}">{% endcomment %}
+  {% if page.stylesheet %}
+  <link rel="stylesheet" type="text/css" href="{{ page.stylesheet | prepend: css_url }}">
+  {% endif %}
+  {% if page.syntax %}
+  <link rel="stylesheet" type="text/css" href="{{ 'syntax.css' | prepend: css_url }}">
+  {% endif %}
+  {% if page.jsPrepend %}
+  <!-- JavaScript -->
+  <script type="text/javascript" src="{{ page.jsPrepend | prepend: js_url }}">
+  {% endif %}
 </head>

@@ -1,6 +1,9 @@
-# Site settings
-title: FrankyMartz
+################################################################################
+# Meta Data
+################################################################################
+url: "http://frankymartz.com"
 author: Franky Martinez
+title: Franky Martinez
 subtitle: "Creative Developer"
 email: frankymartz@gmail.com
 description: "The code, art, and musings of Franky Martinez."
@@ -9,14 +12,20 @@ github: http://github.com/frankymartz
 twitter: http://twitter.com/frankymartz
 instagram: http://instagram.com/frankymartz
 
-# Build settings
+
+################################################################################
+# Jekyll Configuration
+################################################################################
 source: ./_source
 destination: public
 exlude: [_drafts]
 
+highlighter: pygments
+
 permalink: /:categories/:title
+
 markdown: kramdown
+
 kramdown:
   input: GFM
 
-highlighter: pygments

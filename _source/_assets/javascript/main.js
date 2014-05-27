@@ -2,7 +2,7 @@
 /**
  * FrankyMartz.com JavaScript chunky goodness.
  *
- * @author Francisco Martinez <frankymartz@gmail.com>
+ * @author Franky Martinez <frankymartz@gmail.com>
  * @version 1.0.0
  * @copyright FrankyMartz 2014
  */

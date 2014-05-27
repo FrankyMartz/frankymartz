@@ -2,7 +2,7 @@
 /**
  * Stylus Gulp Task Module
  *
- * @author Francisco Martinez <frankymartz@gmail.com>
+ * @author Franky Martinez <frankymartz@gmail.com>
  * @module gulp/stylus
  * @example
  * var g = require(./gulp);

@@ -2,7 +2,7 @@
 /**
  * User Task Module Loader for Gulp
  *
- * @author Francisco Martinez <frankymartz@gmail.com>
+ * @author Franky Martinez <frankymartz@gmail.com>
  * @module {Object} gulp
  * @example
  * var g = require(./gulp);

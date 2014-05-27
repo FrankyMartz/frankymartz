@@ -2,7 +2,7 @@
 /**
  * Browerify Gulp Task Module
  *
- * @author Francisco Martinez <frankymartz@gmail.com>
+ * @author Franky Martinez <frankymartz@gmail.com>
  * @module gulp/browserify
  * @example
  * var g = require(./gulp);

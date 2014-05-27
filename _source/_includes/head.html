@@ -3,7 +3,7 @@
 {% assign css_url = '/assets/css/' %}
 {% assign js_url = '/assets/js/' %}
 {% comment %}
-<!-- Optimization is occuring where this only runs once at index home page. -->
+<!-- Optimization is occuring where this runs only once for entire site. -->
 {% assign page_url = {{ page.url | replace:'index.html','' | prepend: site.url }} %}
 {% endcomment %}
 

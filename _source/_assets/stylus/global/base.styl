@@ -1,17 +1,18 @@
-/* =============================================
+/*! ==========================================
  * Base
  * ========================================== */
 
+@require "./configuration"
 @require "../util/mixin"
 
-/* IE10: Windows 8, Windows Phone 8
+/*! IE10: Windows 8, Windows Phone 8
  * Doesn't differentiate device width from viewport width
  */
 @-ms-viewport
 	width: device-width
 
 
-/* Fix Mobile Font Sizing */
+/*! Fix Mobile Font Sizing */
 +responsiveBreakPoint($view-xs)
 	html
 		-webkit-text-size-adjust: 100%

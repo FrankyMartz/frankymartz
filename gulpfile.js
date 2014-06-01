@@ -39,7 +39,8 @@ g.addTask('browserify', ['clean-js'], {
 // Stylus
 g.addTask('stylus', ['clean-styl'], {
   src: app.styl.src,
-  dest: app.styl.dest
+  dest: app.styl.dest,
+  autoprefixer: ['last 2 version', 'Firefox ESR', 'safari > 5.1', 'opera 12.1', 'ios > 6', 'android > 2.1']
 });
 
 // Watch

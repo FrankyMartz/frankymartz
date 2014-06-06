@@ -50,8 +50,8 @@
   <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad-retina.png' | prepend: icon_url }}" sizes="152x152">
   <meta name="msapplication-config" content="{{ '/ieconfig.xml' }}">
   <!-- CSS -->
-  <link rel="stylesheet" type="text/css" href="/css/main.css">
-  {% comment %}<link rel="stylesheet" type="text/css" href="{{ 'main.css' | prepend: css_url }}">{% endcomment %}
+  {% comment %}<link rel="stylesheet" type="text/css" href="/css/main.css">{% endcomment %}
+  <link rel="stylesheet" type="text/css" href="{{ 'main.css' | prepend: css_url }}">
   {% if page.stylesheet %}
   <link rel="stylesheet" type="text/css" href="{{ page.stylesheet | prepend: css_url }}">
   {% endif %}

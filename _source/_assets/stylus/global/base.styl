@@ -19,41 +19,48 @@
 		-moz-text-size-adjust: 100%
 		-ms-text-size-adjust: 100%
 
+*
+	box-sizing: border-box
+	text-rendering: optimizeLegibility
+
 body
 	position: relative
 	font-family: $font-serif
+	font-weight: normal
 	font-size: 1rem
-	font-smoothing(true)
+	font-smoothing(false)
 	line-height: 1.5rem
-	color: $color-text
-	background-color: $color-background
-	box-sizing: border-box
+	color: $color.text
+	background-color: $color.white.pure
+	display: flex
+	min-height: 100vh
+	flex-direction: column
 
 h1,h2,h3,h4,h5,h6
 	font-family: $font-sans
-	font-weight: 700
 
 a
-	color: $color-link
-	margin: -0.2rem
-	padding: 0.2rem
+	color: $color.teal.dark
 	text-decoration: none
 	&:visited
-		color: $color-link-visited
+		color: $color.salmon.light
 	&:hover
-		color: $color-link-hover
 		text-decoration: underline
 	&:active
-		color: $color-text
+		color: $color.black.pure
 
 ::selection
-	color: $color-selection-text
-	background-color: $color-selection-background
+	color: $color.white.pure
+	background-color: $color.salmon.base
+	font-smoothing(true)
+
+/*! Autoprefixer enjoys removing font-smoothing; ugh.
+ * Use this to keep things DRY
+ */
+.font-smoothing
+	font-smoothing(true)
 
 .content
 	position: relative
-	width: 100%
-	margin: 0 auto
-	clearfix()
-	box-sizing: border-box
+	flex: 1
 

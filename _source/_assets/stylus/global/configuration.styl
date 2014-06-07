@@ -10,21 +10,37 @@
 
 // Typography
 // =============================================
-$font-sans = "Helvetica Neue", Helvetica, "Lucida Grand", Arial sans-serif
+$font-sans = "Lucida Grand", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Arial sans-serif
 $font-serif = Georgia, Times, serif
 $font-monospace = "courier new", monospace, serif
 
 
 // Colors
 // =============================================
-$color-background = #FFF
-$color-link = #02779E
-$color-link-hover = #63D3FF
-$color-link-visited = #02779E
-$color-text = #333
-$color-spot = #FF548F
-$color-selection-background = $color-link
-$color-selection-text = $color-background
+$color = {
+	text: #4B4B50,
+	white: {
+		pure: #FFF
+		grey: #F4F4F4
+	},
+	black: {
+		pure: #000,
+		grey: #333
+	},
+	grey: {
+		base: #999
+	},
+	salmon: {
+		light: #F49171,
+		base: #DD7060,
+		dark: #DA3C25
+	},
+	teal: {
+		light: #8CD8D5,
+		base: darken(#8CD8D5, 15%),
+		dark: darken(#8CD8D5, 30%)
+	}
+}
 
 
 // Responsive Breakpoint

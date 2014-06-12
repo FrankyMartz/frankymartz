@@ -30,14 +30,25 @@ body
 	font-size: 1rem
 	font-smoothing(false)
 	line-height: 1.5rem
-	color: $color.text
+	color: $color.text.base
 	background-color: $color.white.pure
 	display: flex
-	min-height: 100vh
 	flex-direction: column
+	min-height: 100vh
 
 h1,h2,h3,h4,h5,h6
 	font-family: $font-sans
+	font-weight: normal
+	line-height: 2em
+
+h1
+	font-size: 1.75em
+
+h2
+	font-size: 1.25em
+
+small
+	font-size: 0.8em
 
 a
 	color: $color.teal.dark
@@ -59,8 +70,4 @@ a
  */
 .font-smoothing
 	font-smoothing(true)
-
-.content
-	position: relative
-	flex: 1
 

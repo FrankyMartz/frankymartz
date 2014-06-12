@@ -1,20 +1,41 @@
 ---
 layout: default
 ---
-
 <div class="home">
 
-  <h1>Posts</h1>
-
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+  <!-- Blog -->
+  <section class="home-blog">
+    <h1>blog</h1>
+    <ul class="home-blog-list">
+      {% for post in site.posts limit:3 %}
+        <li {% unless forloop.last %}class="home-blog-post"{% endunless %}>
+        <a class="home-blog-post-link" href="{{ post.url | prepend: site.url }}">
+          <h2 class="home-blog-post-header">{{ post.title }}</h2>
+          <p class="home-blog-post-excerpt">{{ post.excerpt | strip_html }}</p>
+          <time class="home-blog-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+        </a>
       </li>
-    {% endfor %}
-  </ul>
+      {% endfor %}
+    </ul>
+  </section>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <!-- Twitter -->
+  <section class="home-twitter">
+      <a class="twitter-timeline" href="https://twitter.com/FrankyMartz" data-theme="light" data-link-color="#3FBAB5" data-chrome="noheader nofooter noborders noscrollbar transparent" data-tweet-limit="1" data-widget-id="476817430178578432">Tweets by @FrankyMartz</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  </section>
+
+  <!-- GitHub -->
+  <section class="home-github">
+    <h1>github</h1>
+  </section>
+
+  <!-- Instagram -->
+  <section class="home-instagram">
+    <h1>instagram</h1>
+  </section>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.url }}">via RSS</a></p>
 
 </div>
+

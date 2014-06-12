@@ -6,25 +6,53 @@
 
 .footer
 	display: flex
-	padding: 2em 1.2rem
+	flex-direction: column
+	justify-content: center
+	padding: 2.2em $mobile.margin
+	padding-bottom: 3em
 	background-color: $color.white.grey
 	border-top: 1px solid darken($color.white.grey, 4%)
 	font-family: $font-sans
-	color: lighten($color.text, 40%)
-	font-size: 0.75rem
+	color: lighten($color.text.base, 40%)
+	font-size: 0.8rem
 	line-height: 1.5em
 
 .footer a
 	color: $color.black.grey
+	fill: $color.black.grey
+	&:hover
+		color: $color.black.pure
+		fill: $color.black.pure
 
-.footer-column
+.footer-directory
+	display: flex
+
+.footer-directory-column
 	flex: 1
+	align-self: baseline
 
-svg.github-icon-svg,
-svg.twitter-icon-svg
+.footer-copyright
+	display:flex
+	flex-direction: column
+	align-items: center
+	margin-top: 4em
+
+.footer-creative-commons
+	display: inline-block
+	opacity: 0.75
+	margin-top: 0.8em
+	background-image: url("http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png")
+	width: 80px
+	height: 15px
+	&:hover
+		opacity: 1.0
+
+.github-icon-svg,
+.twitter-icon-svg,
+.instagram-icon-svg
 	display: inline-block
 	width: 1rem
 	height: 1rem
 	position: relative
 	top: 0.15rem
-	fill: $color.black.grey
+

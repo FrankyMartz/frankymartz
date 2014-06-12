@@ -8,6 +8,15 @@
 
 @require "../util/function"
 
+// Layout
+// =============================================
+
+// Main content needs to stretch for sticky footer.
+$main-wrap = @block {
+	position: relative
+	flex: 1
+}
+
 // Typography
 // =============================================
 $font-sans = "Lucida Grand", "Lucida Sans Unicode", "Helvetica Neue", Helvetica, Arial sans-serif
@@ -18,7 +27,10 @@ $font-monospace = "courier new", monospace, serif
 // Colors
 // =============================================
 $color = {
-	text: #4B4B50,
+	text: {
+		light: lighten(#4B4B50, 48%),
+		base: #4B4B50
+	},
 	white: {
 		pure: #FFF
 		grey: #F4F4F4
@@ -28,6 +40,7 @@ $color = {
 		grey: #333
 	},
 	grey: {
+		light: #CACACA,
 		base: #999
 	},
 	salmon: {
@@ -42,6 +55,9 @@ $color = {
 	}
 }
 
+$mobile = {
+	margin: 22px
+}
 
 // Responsive Breakpoint
 // =============================================

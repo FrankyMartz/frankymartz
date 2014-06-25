@@ -10,5 +10,9 @@
 // Squash Browser Bugs
 require('./global/ie10-fix');
 
-
+/*
+$(document).ready(function(){
+	require('./modules/GithubEventFeed');
+});
+*/
 

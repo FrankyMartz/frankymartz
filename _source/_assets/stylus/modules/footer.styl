@@ -2,27 +2,25 @@
  * Footer
  * ========================================== */
 
-@require "../global/configuration"
+@require "../global/variables"
 
 .footer
 	display: flex
 	flex-direction: column
 	justify-content: center
-	padding: 2.2em $mobile.margin
-	padding-bottom: 3em
+	padding: 5em $mobile.margin
+	padding-bottom: 6rem
 	background-color: $color.white.grey
 	border-top: 1px solid darken($color.white.grey, 4%)
-	font-family: $font-sans
-	color: lighten($color.text.base, 40%)
+	font-family: $font.sans
+	color: $color.text.light
 	font-size: 0.8rem
 	line-height: 1.5em
 
 .footer a
-	color: $color.black.grey
-	fill: $color.black.grey
+	color: $color.text.base
 	&:hover
-		color: $color.black.pure
-		fill: $color.black.pure
+		color: $color.text.dark
 
 .footer-directory
 	display: flex
@@ -31,28 +29,26 @@
 	flex: 1
 	align-self: baseline
 
+/*! Copyright
+ * ========================================== */
 .footer-copyright
 	display:flex
 	flex-direction: column
 	align-items: center
 	margin-top: 4em
 
-.footer-creative-commons
+.footer-copyright-cc
 	display: inline-block
 	opacity: 0.75
-	margin-top: 0.8em
+	margin-top: 1.5em
 	background-image: url("http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png")
 	width: 80px
 	height: 15px
 	&:hover
 		opacity: 1.0
 
-.github-icon-svg,
-.twitter-icon-svg,
-.instagram-icon-svg
-	display: inline-block
-	width: 1rem
-	height: 1rem
-	position: relative
-	top: 0.15rem
-
+/*! Email
+ * ========================================== */
+.footer-email-icon
+	&:before
+		content: '\f03b'

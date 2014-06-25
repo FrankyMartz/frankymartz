@@ -2,16 +2,13 @@
  * Home
  * ========================================== */
 
-@require "../global/configuration"
+@require "../global/variables"
 
 .home
 	 {$main-wrap}
 	 padding: 2rem $mobile.margin
 
-.home-blog,
-.home-twitter,
-.home-github,
-.home-instagram
+.home-section
 	margin-bottom: 2rem
 	padding-bottom: 3rem
 	border-bottom: 1px dashed $color.grey.light
@@ -85,4 +82,6 @@
 		border-right-color: transparent
 		box-shadow: 0 .2em 0px 0px rgba($color.teal.light, 0.75)
 
+
+@require "../modules/githubEventFeed"
 

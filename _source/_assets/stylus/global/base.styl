@@ -2,7 +2,7 @@
  * Base
  * ========================================== */
 
-@require "./configuration"
+@require "./variables"
 @require "../util/mixin"
 
 /*! IE10: Windows 8, Windows Phone 8
@@ -13,7 +13,7 @@
 
 
 /*! Fix Mobile Font Sizing */
-+responsiveBreakPoint($view-xs)
++responsiveBreakPoint($view.xs)
 	html
 		-webkit-text-size-adjust: 100%
 		-moz-text-size-adjust: 100%
@@ -24,28 +24,25 @@
 	text-rendering: optimizeLegibility
 
 body
-	position: relative
-	font-family: $font-serif
+	font-family: $font.serif
 	font-weight: normal
 	font-size: 1rem
 	font-smoothing(false)
 	line-height: 1.5rem
 	color: $color.text.base
 	background-color: $color.white.pure
-	display: flex
-	flex-direction: column
-	min-height: 100vh
 
 h1,h2,h3,h4,h5,h6
-	font-family: $font-sans
-	font-weight: normal
+	font-family: $font.sans
+	font-weight: 700
 	line-height: 2em
 
 h1
-	font-size: 1.75em
+	font-weight: 900
+	font-size: 2em
 
 h2
-	font-size: 1.25em
+	font-size: 1.5em
 
 small
 	font-size: 0.8em
@@ -59,6 +56,10 @@ a
 		text-decoration: underline
 	&:active
 		color: $color.black.pure
+
+code,pre
+	font-family: $font.mono
+	font-size: 0.8rem
 
 ::selection
 	color: $color.white.pure

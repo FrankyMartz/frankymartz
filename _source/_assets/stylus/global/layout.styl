@@ -1,0 +1,87 @@
+/*! ==========================================
+ * Layout
+ * ========================================== */
+
+@require "../util/mixin"
+@require "./variables"
+
+// Main content needs to stretch for sticky footer.
+$main-wrap = @block {
+	position: relative
+	flex: 1
+}
+
+.l-body
+	position: relative
+	display: flex
+	flex-direction: column
+	min-height: 100vh
+
+.l-body__header
+.l-body__footer
+
+.l-main__wrap
+	display: flex
+	flex: 1
+
+.l-grid
+	position: relative
+	display: flex
+
+.l-grid__cell
+	flex: 1
+
+
+/* Base */
+.l-grid--fit > .l-grid__cell
+	flex: 1
+
+.l-grid--full > .l-grid__cell
+	flex: 0 0 100%
+
+.l-grid--1of2 > .l-grid__cell
+	flex: 0 0 50%
+
+.l-grid--1of3 > .l-grid__cell
+	flex: 0 0 33.3333%
+
+.l-grid--1of4 > .l-grid__cell
+	flex: 0 0 25%
+
+
+/* Screen >= Phone */
++responsiveBreakPoint($view.sm)
+	.l-grid-small--fit > .l-grid__cell
+		flex: 1
+	
+	.l-grid-small--full > .l-grid__cell
+		flex: 0 0 100%
+
+	.l-grid-small--1of2 > .l-grid__cell
+		flex: 0 0 50%
+
+	.l-grid-small--1of3 > .l-grid__cell
+		flex: 0 0 33.3333%
+
+	.l-grid-small--1of4 > .l-grid__cell
+		flex: 0 0 25%
+
+
+
+/* Screen >= Tablet */
++responsiveBreakPoint($view.md)
+	.l-grid-large--fit > .l-grid__cell
+		flex: 1
+
+	.l-grid-large--full > .l-grid__cell
+		flex: 0 0 100%
+
+	.l-grid-large--1of2 > .l-grid__cell
+		flex: 0 0 50%
+
+	.l-grid-large--1of3 > .l-grid__cell
+		flex: 0 0 33.3333%
+
+	.l-grid-large--1of4 > .l-grid__cell
+		flex: 0 0 25%
+

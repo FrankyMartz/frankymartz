@@ -1,17 +1,17 @@
 ---
 layout: default
 ---
-<div class="home">
+<div class="home" role="main">
 
   <!-- Blog -->
-  <section class="home-blog">
+  <section class="home-section">
     <h1>blog</h1>
     <ul class="home-blog-list">
       {% for post in site.posts limit:3 %}
         <li {% unless forloop.last %}class="home-blog-post"{% endunless %}>
-        <a class="home-blog-post-link" href="{{ post.url | prepend: site.url }}">
+        <a class="home-blog-post-link" href="{{ post.url }}">
           <h2 class="home-blog-post-header">{{ post.title }}</h2>
-          <p class="home-blog-post-excerpt">{{ post.excerpt | strip_html }}</p>
+          <p class="home-blog-post-excerpt">{{ post.excerpt | strip_html }} [...]</p>
           <time class="home-blog-post-time" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
         </a>
       </li>
@@ -20,22 +20,178 @@ layout: default
   </section>
 
   <!-- Twitter -->
-  <section class="home-twitter">
+  <section class="home-section">
+      <!--
       <a class="twitter-timeline" href="https://twitter.com/FrankyMartz" data-theme="light" data-link-color="#3FBAB5" data-chrome="noheader nofooter noborders noscrollbar transparent" data-tweet-limit="1" data-widget-id="476817430178578432">Tweets by @FrankyMartz</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      -->
   </section>
 
   <!-- GitHub -->
-  <section class="home-github">
+  <section class="home-section">
     <h1>github</h1>
+
+    <h2>CommitCommentEvent</h2>
+
+      <article class="home-github-event">
+        <div class="home-github-event-icon"><i class="mega-octicon octicon-comment-discussion"></i></div>
+        <p class="home-github-event-body">
+          <span class="home-github-event-content">commented on commit <a class="home-github-event-body-link" href="#"><i class="octicon octicon-git-commit"></i>e8e4c4f</a></span>
+          <time class="home-github-event-datetime">3 days ago</time>
+        </p>
+      </article>
+
+    <h2>CreateEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-repo"></i></div>
+      <p class="home-github-event-body">
+        <span class="home-github-event-body-content">created repository <a href="#">frankymartz</a></span>
+        <time class="home-github-event-datetime">2 months ago</time>
+      </p>
+    </article>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-tag"></i></div>
+      <p class="home-github-event-body">
+        <span>created tag <a href="#">0.1</a> at <a href="#">FrankyMartz/frankymartz</a></span>
+        <time class="home-github-event-datetime">23 days ago</time>
+      </p>
+    </article>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-git-branch"></i></div>
+      <p class="home-github-event-body">
+        <span>created branch <a class="home-github-event-body-link" href="#"><i class="octicon octicon-git-branch"></i>last_frame_skipped</a> at <a href="#">FrankyMartz/AnimationHouse</a></span>
+        <time class="home-github-event-datetime">7 months ago</time>
+      </p>
+    </article>
+
+    <h2>DeleteEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-trashcan"></i></div>
+      <p class="home-github-event-body">
+        <p>deleted branch <a class="home-github-event-body-link" href="#"><i class="octicon octicon-git-branch"></i>last_frame_skipped</a> at <a href="#">FrankyMartz/AnimationHouse</a></p>
+        <time class="home-github-event-datetime">22 days ago</time>
+      </p>
+    </article>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-x"></i></div>
+      <p class="home-github-event-body">
+        <p><a href"{{site.github}}">FrankyMartz</a> deleted tag <a class="home-github-event-body-link" href="#"><i class="octicon octicon-tag"></i>0.1</a> at <a href="#">FrankyMartz/frankymartz</a></p>
+        <time class="home-github-event-datetime">2 years ago</time>
+      </p>
+    </article>
+
+
+    <h2>ForkEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-repo-forked"></i></div>
+      <p class="home-github-event-body">
+        <p><a href"{{site.github}}">FrankyMartz</a> forked <a href="#">gitlabhq/gitlab-ci</a> to <a href="#">FrankyMartz/gitlab-ci</a></p>
+        <time class="home-github-event-datetime">47 seconds ago</time>
+      </p>
+    </article>
+
+
+    <h2>GollumEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-pencil"></i></div>
+      <p class="home-github-event-body">
+        <p>created the <a href="#"></a></p>
+        <time class="home-github-event-datetime">11 months ago</time>
+      </p>
+    </article>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-pencil"></i></div>
+      <p class="home-github-event-body">
+        <p>edited</p>
+        <time class="home-github-event-datetime">47 minutes ago</time>
+      </p>
+    </article>
+
+
+    <h2>IssueCommentEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-comment-discussion"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+
+    <h2>IssueEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-issue-opened"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-issue-closed"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-issue-reopened"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+
+    <h2>PushEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-repo-push"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-git-commit"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+    <h2>ReleaseEvent</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-megaphone"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+    <h2>Watch</h2>
+
+    <article class="home-github-event">
+      <div class="home-github-event-icon"><i class="mega-octicon octicon-star"></i></div>
+      <p class="home-github-event-body">
+      </p>
+    </article>
+
+
   </section>
 
   <!-- Instagram -->
-  <section class="home-instagram">
+  <section class="home-section">
     <h1>instagram</h1>
   </section>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.url }}">via RSS</a></p>
+  <p class="rss-subscribe">
+    <a href="{{ "/feed.xml" | prepend: site.url }}">
+      <i class="octicon octicon-rss"></i>
+      Subscribe to News Feed
+    </a>
+  </p>
 
 </div>
 

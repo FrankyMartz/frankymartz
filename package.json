@@ -12,13 +12,13 @@
   },
   "jshintConfig": {
     "node": "true",
-    "jquery": "true",
     "browser": "true",
     "curly": "true",
     "eqeqeq": "true",
     "undef": "true",
     "forin": "true",
-    "unused": "true"
+    "unused": "true",
+    "multistr": "true"
   },
   "browserify-shim": {
     "jquery": "global:$"

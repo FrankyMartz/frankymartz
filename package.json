@@ -24,7 +24,9 @@
     "jquery": "global:$"
   },
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "devDependencies": {
     "browserify": "^4.1.5",
@@ -32,10 +34,10 @@
     "glob": "^3.2.9",
     "gulp": "^3.6.2",
     "gulp-autoprefixer": "0.0.7",
-    "gulp-clean": "^0.2.4",
     "gulp-minify-css": "^0.3.4",
     "gulp-notify": "^1.2.5",
     "gulp-rev": "^0.3.2",
+    "gulp-rimraf": "^0.1.0",
     "gulp-streamify": "0.0.5",
     "gulp-stylus": "^1.0.1",
     "gulp-util": "^2.2.14",

@@ -9,7 +9,7 @@
  * g.addTask('clean', ['./public/css/', './public/js/']);
  */
 var gulp = require('gulp');
-var clean = require('gulp-clean');
+var rimraf = require('gulp-rimraf');
 /**
  * @param {String} name - String used to reference gulp task
  * @param {Array.<String>} [dep] - Gulp Task Dependencies
@@ -24,6 +24,6 @@ module.exports = function(name, dep, source) {
         // Flatten possible multidimensional Array
         var paths = [].concat.apply([], source);
         return gulp.src(paths, {read: false})
-          .pipe(clean());
+          .pipe(rimraf());
     });
 };

@@ -11,12 +11,17 @@
 var gulp = require('gulp');
 var rimraf = require('gulp-rimraf');
 /**
+ * @param {String} title - Module Access String
  * @param {String} name - String used to reference gulp task
  * @param {Array.<String>} [dep] - Gulp Task Dependencies
  * @param {Array.<String>} source - Array of string paths to clean
  * @throws {Error} Requires <source> argument typeof Array
  */
-module.exports = function(name, dep, source) {
+module.exports = function(title, name, dep, source) {
+    if (source === null || source === undefined) {
+        source = dep;
+        dep = [];
+    }
     if (!source || !Array.isArray(source)) {
       throw new Error('Clean module requires <source> argument typeof Array.<String>');
     }

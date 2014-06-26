@@ -1,7 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var clean = require('gulp-clean');
 var g = require('./gulp');
 
 // Configuration
@@ -18,16 +17,8 @@ var app = {
 };
 
 // Clean
-gulp.task('clean-js', function() {
-  return gulp.src(app.js.dest + '*.js', {read: false})
-    .pipe(clean());
-});
-
-gulp.task('clean-styl', function() {
-  return gulp.src(app.styl.dest + '*.css', {read: false})
-    .pipe(clean());
-});
-
+g.addTask('clean', 'clean-js', [app.js.dest + '*.js']);
+g.addTask('clean', 'clean-styl', [app.styl.dest + '*.css']);
 gulp.task('clean', ['clean-js', 'clean-styl']);
 
 // Browserify

@@ -118,7 +118,7 @@ module.exports = function(name, dep, args) {
         return bundler.bundle(opts.bundle)
           .on('error', errorHandler)
           .pipe(source(path.basename(element)))
-          .pipe(streamify(gutil.env.debug ? gutil.noop() : rev()))
+          .pipe(streamify(gutil.env === 'production' ? rev() : gutil.noop()))
           .pipe(gulp.dest(args.dest));
       }
 

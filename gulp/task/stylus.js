@@ -70,8 +70,8 @@ module.exports = function(name, dep, args) {
       .pipe(stylus(args.stylus))
       .on('error', errorHandler)
       .pipe(prefix(args.autoprefixer, {cascade: true}))
-      .pipe(gutil.env.debug ? gutil.noop() : minifyCSS(args.minifycss))
-      .pipe(gutil.env.debug ? gutil.noop() : rev())
+      .pipe(gutil.env === 'production' ? minifyCSS(args.minifycss) : gutil.noop())
+      .pipe(gutil.env === 'production' ? rev() : gutil.noop())
       .pipe(gulp.dest(args.dest));
   });
 };

@@ -17,9 +17,17 @@ var app = {
 };
 
 // Clean
-g.addTask('clean', 'clean-js', [app.js.dest + '*.js']);
-g.addTask('clean', 'clean-styl', [app.styl.dest + '*.css']);
-gulp.task('clean', ['clean-js', 'clean-styl']);
+g.addTask('clean',{
+	title: 'clean-js',
+	src: [app.js.dest + '*.js']
+});
+
+g.addTask('clean',{
+	title: 'clean-css',
+	src: [app.styl.dest + '*.css']
+});
+
+gulp.task('clean', ['clean-js', 'clean-css']);
 
 // Browserify
 g.addTask('browserify', ['clean-js'], {
@@ -28,7 +36,7 @@ g.addTask('browserify', ['clean-js'], {
 });
 
 // Stylus
-g.addTask('stylus', ['clean-styl'], {
+g.addTask('stylus', ['clean-css'], {
   src: app.styl.src,
   dest: app.styl.dest,
   autoprefixer: ['last 2 version', 'Firefox ESR', 'safari > 5.1', 'opera 12.1', 'ios > 6', 'android > 2.1']

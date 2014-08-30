@@ -16,9 +16,11 @@ var glob = require('glob');
 var gulp = require('gulp');
 var path = require('path');
 var gutil = require('gulp-util');
+var browserify = require('browserify');
 var watchify = require('watchify');
+var fromArgs = require('watchify/bin/args');
 var shim = require('browserify-shim');
-var errorHandler = require('../util/errorHandler');
+//var errorHandler = require('../util/errorHandler');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var rev = require('gulp-rev');
@@ -67,6 +69,11 @@ module.exports = function(name, dep, args) {
       var opts = args.browserify || {};
       var data = {};
 
+			// Watchify Required Properties
+			opts.cache = opts.cache || {};
+			opts.packageCache = opts.packageCache || {};
+			opts.fullPaths = opts.fullPaths || true;
+
       // sort out options
       ['noParse','extensions','resolve','basedir'].forEach(function(opt){
         if (opts[opt]) {
@@ -92,17 +99,7 @@ module.exports = function(name, dep, args) {
         opts.builtins = builtins;
       }
 
-      var bundler = watchify(data, opts);
-
-      var lib;
-      if (opts.shim) {
-        for (lib in opts.shim) {
-          if (opts.shim.hasOwnProperty(lib)) {
-            opts.shim[lib].path = path.resolve(opts.shim[lib].path);
-          }
-        }
-        bundler = shim(bundler, opts.shim);
-      }
+			var bundler = watchify(browserify(data, opts));
 
       // add options to bundler
       ['exclude','add','external','transform','ignore','require'].forEach(function(method){
@@ -115,8 +112,9 @@ module.exports = function(name, dep, args) {
       });
 
       function rebundle() {
-        return bundler.bundle(opts.bundle)
-          .on('error', errorHandler)
+        return bundler.bundle()
+          //.on('error', errorHandler)
+					.on('error', gutil.log.bind(gutil, 'Browserify Error'))
           .pipe(source(path.basename(element)))
           .pipe(streamify(gutil.env === 'production' ? rev() : gutil.noop()))
           .pipe(gulp.dest(args.dest));

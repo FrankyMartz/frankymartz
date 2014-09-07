@@ -40,7 +40,7 @@
     "gulp-rimraf": "^0.1.0",
     "gulp-streamify": "0.0.5",
     "gulp-stylus": "*",
-    "gulp-util": "^2.2.14",
+    "gulp-util": "*",
     "stylus": "*",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "*"

@@ -1,17 +1,29 @@
 /*! ==========================================
  * Footer
+ *
+ * .footer
+ * .footer__nav
+ * .footer-nav__connect
+ * .footer-nav-connect__header
+ * .footer-nav__description
+ * .footer-nav__social
+ * .footer__copyright
+ * .footer-copyright__cc
+ *
+ * .footer__email
+ * .footer-email__note
+ *
  * ========================================== */
 
 @require "../global/variables"
 
+
 .footer
-	display: flex
-	flex-direction: column
-	justify-content: center
-	padding: 5em $mobile.margin
-	padding-bottom: 6rem
-	background-color: $color.white.grey
-	border-top: 1px solid darken($color.white.grey, 4%)
+	margin-top: 2rem
+	padding-top: 5em
+	padding-bottom: 6em
+	border-top: 1px solid darken($color-background.footer, 5%)
+	background-color: $color-background.footer
 	font-family: $font.sans
 	color: $color.text.light
 	font-size: 0.8rem
@@ -21,34 +33,80 @@
 	color: $color.text.base
 	&:hover
 		color: $color.text.dark
+		//color: #000
 
-.footer-directory
-	display: flex
+.footer__nav
+	width: 100%
+	//padding-bottom: 5rem
 
-.footer-directory-column
-	flex: 1
-	align-self: baseline
+.footer-nav__connect
+	margin-bottom: 1.5em
+	min-width: 8em
 
-/*! Copyright
+.footer-nav__description
+	margin-bottom: 4em
+	padding-top: 2em
+	border-top: 1px solid darken($color-background.footer, 5%)
+
+.footer-nav__social
+	padding-top: 2em
+	border-top: 1px solid darken($color-background.footer, 5%)
+	list-style-type: none
+	& > li
+		display: inline
+
+
+/*! Footer: Copyright
  * ========================================== */
 .footer-copyright
-	display:flex
-	flex-direction: column
-	align-items: center
-	margin-top: 4em
+	align-items: center // cross axis
+	margin-top: 8em
 
-.footer-copyright-cc
-	display: inline-block
+.footer-copyright__cc
+	display: block
+	margin-top: 0.5em
 	opacity: 0.75
-	margin-top: 1.5em
-	background-image: url("http://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png")
-	width: 80px
-	height: 15px
 	&:hover
 		opacity: 1.0
 
-/*! Email
+
+
+/*! Footer: Email
  * ========================================== */
-.footer-email-icon
-	&:before
-		content: '\f03b'
+
+.footer-nav-connect__header
+	text-transform: uppercase
+	margin-bottom: 1em
+
+.footer-email__note
+	font-weight: 700
+	font-size: 1.5rem
+
+
+
+/*! Home: Screen >= Tablets
+ * ===========================================*/
+
++responsiveBreakPoint($view.sm)
+	.footer
+		align-items: center
+
+	.footer__nav
+		padding-bottom: 0
+		flex-wrap: nowrap
+		align-items: baseline
+		justify-content: space-between
+
+	.footer-nav__connect
+		margin-bottom: 0
+
+	.footer-nav__description
+		margin-left: 2rem
+		margin-right: 2rem
+		padding-top: 0
+		border-top: none
+
+	.footer-nav__social
+		padding-top: 0
+		border-top: none
+

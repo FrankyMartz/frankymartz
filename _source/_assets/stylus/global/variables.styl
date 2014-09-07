@@ -8,11 +8,12 @@
 
 @require "../util/function"
 
+
 // Typography
 // =============================================
 
 $font = {
-	sans: "Lato"\, "Lucida Grand"\, "Lucida Sans Unicode"\, "Helvetica Neue"\, Helvetica\, Arial sans-serif
+	sans: "Lato"\, "Lucida Grand"\, "Helvetica Neue"\, Helvetica\, Arial\, sans-serif
 	serif: "Noticia Text"\, Georgia\, Times\, serif
 	mono: Menlo\, Consolas\, Courier\, monospace\, serif
 }
@@ -23,37 +24,70 @@ $font = {
 
 $color = {
 	text: {
-		light: lighten(#4B4B50, 35%),
-		base: #4B4B50
-		dark: darken(#4B4B50, 35%)
+		light: #979797,
+		base: #4A4A4A,
+		dark: darken(#4B4B50, 45%)
 	},
 	white: {
-		pure: #FFF
-		grey: #F4F4F4
+		base: #FAFAFA,
+		grey: #F1F1F1
 	},
 	black: {
-		pure: #000,
-		grey: #333
+		grey: #333,
+		red: #37201C
 	},
 	grey: {
 		light: #BBB,
-		base: #999
+		base: #979797
 	},
 	salmon: {
 		light: #F49171,
-		base: #DD7060,
+		base: #FC8472,
 		dark: #DA3C25
 	},
 	teal: {
 		light: #8CD8D5,
-		base: darken(#8CD8D5, 15%),
+		//base: darken(#8CD8D5, 15%),
+		base: #2CAF73,
 		dark: darken(#8CD8D5, 30%)
+	},
+	blue: {
+		base: #58B9F6,
+		dark: darken(#58B9F6, 30%)
+	},
+	yellow: {
+		//base: #FFF68C
+		base: #FFFABA
 	}
+}
+
+$color-background = {
+	body: #FFF,
+	footer: $color.white.base,
+	header: $color.salmon.base
+}
+
+$color-link = {
+	head: {
+		default: $color.text.base
+		active: $color.salmon.dark
+		visited: $color.text.base
+	},
+	body: {
+		default: $color.salmon.base,
+		hover: $color.blue.base,
+		active: #000,
+		visited: $color.salmon.dark
+	},
 }
 
 
 // Responsive Breakpoint
 // =============================================
+
+$min-width = 320px
+//$max-width = 680px
+$max-width = pxToEm(680, rem) // 42.5rem
 
 $view = {
 	sm: pxToEm(480px),	// Phone
@@ -62,15 +96,9 @@ $view = {
 	xl: pxToEm(1200px),	// Large Desktop
 }
 
-// no media query overlapping
-//$view-xs-max = $view-sm - 1
-//$view-sm-max = $view-md - 1
-//$view-md-max = $view-lg - 1
-
-
-// 
-// =============================================
-
-$mobile = {
-	margin: 22px
+$margin = {
+	sm: 22px,
+	md: 2rem,
+	lg: 3rem
 }
+

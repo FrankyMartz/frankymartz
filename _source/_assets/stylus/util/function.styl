@@ -8,8 +8,8 @@
 
 // Unit Conversions
 // =============================================
-pxToEm($value)
-	return unit($value / 16, em)
+pxToEm($value, $unit = em)
+	return unit($value / 16, $unit)
 
 pxToPct($value)
 	return unit($value / 16 * 100, "%")

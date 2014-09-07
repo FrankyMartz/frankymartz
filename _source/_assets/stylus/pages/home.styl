@@ -1,87 +1,98 @@
 /*! ==========================================
  * Home
+ *
+ * .home-blog
+ * .home-blog__post
+ * .home-blog-post__link
+ * .home-blog-post__head
+ * .home-blog-post__excerpt
+ * .home-blog-post__details
+ * .home-blog-post__time
+ *
  * ========================================== */
 
 @require "../global/variables"
+@require "../util/function"
+
 
 .home
-	 {$main-wrap}
-	 padding: 2rem $mobile.margin
+	align-items: center
 
-.home-section
-	margin-bottom: 2rem
-	padding-bottom: 3rem
-	border-bottom: 1px dashed $color.grey.light
+/* IE10 doesn't confine content to view width so I have to.
+ * Reset width to default once padding/margin goes away
+ */
+.home__section
+	width: 100%
+	padding-top: 2rem
+	padding-bottom: 2rem
 
-/*! Blog
- * ========================================== */
+.home-section__head
+	margin-bottom: 2em
+	padding-bottom: 0
+	border-bottom: 0
+	font-size: 0.8em
+	font-weight: 400
 
-.home-blog-list
-	list-style: none
 
-.home-blog-post-link
-	color: $color.teal.dark
-	&:visited
+
+/*! Home: Blog
+* ========================================== */
+
+.home-blog__post
+	font-family: $font.sans
+	font-weight: normal
+
+.home-blog-post__link
+	&,
+	&:visited,
+	&:hover > .home-blog-post__excerpt
 		color: $color.text.base
-	&:hover, &:hover .home-blog-post-excerpt
-		text-decoration: none
+	&:hover > .home-blog-post__details
+		color: $color-link.body.hover
+
+.home-blog-post__head
+	line-height: 1.125em
+	margin-bottom: 0.4em
+	padding-bottom: 0
+	border-bottom: 0
+
+
+
+.home-blog-post__excerpt
+	&,&:visited
+		color: $color.text.light
+
+.home-blog-post__details
+	display: block
+	margin-top: pxToEm(18, rem)
+	font-size: pxToEm(12)
+	&,&:visited
 		color: $color.salmon.base
 
-.home-blog-post-header
-	text-align: center
-	margin-bottom: 0.25em
-	&:visited
-		color: $color.text.base
-
-.home-blog-post-excerpt
-	color: $color.text.light
-	font-size: 0.95rem
-	&:active
-		color: $color.black.pure
-
-.home-blog-post-time
-	display: block
-	margin-top: 1.5rem
-	text-align: center
-	text-transform: uppercase
-	font-family: $font-sans
-	font-weight: normal
-	font-size: 0.75rem
-	&:before, &:after
-		content: "•"
-		padding-left: 1.2em
-		padding-right: 1.2em
 
 
-/*! Magical Ribbon */
-.home-blog-ribbon
-	width: 80%
-	position: relative
-	background: $color.salmon.light
-	color: #fff
-	text-shadow: 0 0.10em 1px $color.salmon.base
-	text-align: center
-	padding: 0.4em 0.6em
-	margin: 1em auto
-	box-shadow: 0 .2em 0px 0px rgba($color.teal.light, 0.75)
-	&:before, &:after
-		content: ""
-		position: absolute
-		display: block
-		bottom: 0
-		border: 1.2em solid $color.salmon.base
-		z-index: -1
-	&:before
-		left: -2em
-		border-right-width: 0.8em
-		border-left-color: transparent
-		box-shadow: 0 .2em 0px 0px rgba($color.teal.light, 0.75)
-	&:after
-		right: -2em
-		border-left-width: 0.8em
-		border-right-color: transparent
-		box-shadow: 0 .2em 0px 0px rgba($color.teal.light, 0.75)
+/*! Home: Screen >= Tablets
+ * ===========================================*/
+
++responsiveBreakPoint($view.sm)
+	.home-blog-post__head
+		text-align: center
+
+	.home-blog-post__details
+		text-align: center
+		&::before
+			padding-right: 1.25em
+			content: "\2014"
+		&::after
+			padding-left: 1.25em
+			content: "\2014"
 
 
-@require "../modules/githubEventFeed"
+
+/*! Home: Screen >= Desktop
+ * ===========================================*/
+
++responsiveBreakPoint($view.md)
+	.home__section
+		width: auto
 

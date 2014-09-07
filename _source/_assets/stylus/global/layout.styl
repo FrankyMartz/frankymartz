@@ -5,83 +5,125 @@
 @require "../util/mixin"
 @require "./variables"
 
-// Main content needs to stretch for sticky footer.
-$main-wrap = @block {
-	position: relative
-	flex: 1
-}
+// ==========================================
+// Mixins
+//
+// Note:
+// Opera freaks out when flex-shrink isn't set.
+// ==========================================
 
-.l-body
+createLayoutCell($type, $name="")
+	unless $type in ('fit' 'full' '1of2' '1of3' '1of4' 'reset')
+		error('Illegal type ' + $type + ' not valid.' )
+
+	$name = $name ? "-" + $name : ""
+	.l-cell{$name}--{$type}
+		if $type == "fit"
+			flex: 1 1 auto
+			{block}
+		else if $type == "full"
+			flex: 0 1 100%
+			{block}
+		else if $type == "1of2"
+			flex: 0 1 50%
+			{block}
+		else if $type == "1of3"
+			flex: 0 1 33.3333%
+			{block}
+		else if $type == "1of4"
+			flex: 0 1 25%
+			{block}
+		else if $type == "reset"
+			flex: 0 1 auto
+			{block}
+
+
+
+/* ==========================================
+ *  Base Grid
+ * ========================================== */
+
+.l-flex--row
 	position: relative
 	display: flex
-	flex-direction: column
-	min-height: 100vh
+	flex-flow: row wrap
 
-.l-body__header
-.l-body__footer
-
-.l-main__wrap
-	display: flex
-	flex: 1
-
-.l-grid
+.l-flex--column
 	position: relative
 	display: flex
+	flex-flow: column nowrap
 
-.l-grid__cell
-	flex: 1
-
-
-/* Base */
-.l-grid--fit > .l-grid__cell
-	flex: 1
-
-.l-grid--full > .l-grid__cell
-	flex: 0 0 100%
-
-.l-grid--1of2 > .l-grid__cell
-	flex: 0 0 50%
-
-.l-grid--1of3 > .l-grid__cell
-	flex: 0 0 33.3333%
-
-.l-grid--1of4 > .l-grid__cell
-	flex: 0 0 25%
+.l-flex--wrap
+	width: 100%
 
 
-/* Screen >= Phone */
+/*! Wrap inner cell content for responsive margin/padding
+ * Does not work in conjuncture with l-cell-*
+ */
+.l-flex--gutters
+	padding-left: $margin.sm
+	padding-right: $margin.sm
+
+
+/*! ==========================================
+ *  Layout: Mobile - First
+ *
+ * .l-cell--fit
+ * .l-cell--full
+ * .l-cell--1of2
+ * .l-cell--1of3
+ * .l-cell--1of4
+ * .l-cell--reset
+ * ========================================== */
+createLayoutCell('fit')
+createLayoutCell('full')
+createLayoutCell('1of2')
+createLayoutCell('1of3')
+createLayoutCell('1of4')
+createLayoutCell('reset')
+
+
+/*! ==========================================
+ *  Layout: Tablet
+ *
+ * .l-cell-md--full
+ * .l-cell-md--1of2
+ * .l-cell-md--1of3
+ * .l-cell-md--1of4
+ * .l-cell-md--reset
+ * ========================================== */
 +responsiveBreakPoint($view.sm)
-	.l-grid-small--fit > .l-grid__cell
-		flex: 1
-	
-	.l-grid-small--full > .l-grid__cell
-		flex: 0 0 100%
-
-	.l-grid-small--1of2 > .l-grid__cell
-		flex: 0 0 50%
-
-	.l-grid-small--1of3 > .l-grid__cell
-		flex: 0 0 33.3333%
-
-	.l-grid-small--1of4 > .l-grid__cell
-		flex: 0 0 25%
+	createLayoutCell('fit', 'md')
+	createLayoutCell('full', 'md')
+	createLayoutCell('1of2', 'md')
+	createLayoutCell('1of3', 'md')
+	createLayoutCell('1of4', 'md')
+	createLayoutCell('reset', 'md')
+	.l-flex--gutters
+		padding-left: $margin.md
+		padding-right: $margin.md
+		.l-flex--row > &
+			padding-right: 0
 
 
-
-/* Screen >= Tablet */
+/*! ==========================================
+ *  Layout: Desktop
+ *
+ * .l-cell-lg--full
+ * .l-cell-lg--1of2
+ * .l-cell-lg--1of3
+ * .l-cell-lg--1of4
+ * .l-cell-lg--reset
+ * ========================================== */
 +responsiveBreakPoint($view.md)
-	.l-grid-large--fit > .l-grid__cell
-		flex: 1
-
-	.l-grid-large--full > .l-grid__cell
-		flex: 0 0 100%
-
-	.l-grid-large--1of2 > .l-grid__cell
-		flex: 0 0 50%
-
-	.l-grid-large--1of3 > .l-grid__cell
-		flex: 0 0 33.3333%
-
-	.l-grid-large--1of4 > .l-grid__cell
-		flex: 0 0 25%
+	createLayoutCell('fit', 'lg')
+	createLayoutCell('full', 'lg')
+	createLayoutCell('1of2', 'lg')
+	createLayoutCell('1of3', 'lg')
+	createLayoutCell('1of4', 'lg')
+	createLayoutCell('reset', 'lg')
+	.l-flex--gutters
+		max-width: $max-width
+		padding-left: 0
+		padding-right: 0
 

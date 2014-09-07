@@ -1,3 +1,6 @@
+@css {---
+layout: null
+---}
 @charset "UTF-8"
 /*! ==========================================================================
  * Project Crunchy Chips v1.0
@@ -6,18 +9,28 @@
  * Author: Franky Martinez <frankymartz@gmail.com>
  * ========================================================================== */
 
-// Base
+// Util
 @require "./global/reset"
+@require "./global/animation"
+@require "./util/invisible"
+
+// Base
 @require "./global/base"
 @require "./global/layout"
-
-// Modules
 @require "./modules/header"
 @require "./modules/footer"
 
-// Layout
+// Pages
 @require "./pages/home"
+@require "./pages/about"
+@require "./pages/post"
+@require "./pages/foreword"
 
+// Modules
+@require "./modules/twitterFeed"
+@require "./modules/githubFeed"
+@require "./modules/instagramFeed"
+@require "./modules/syntax"
 
 // Debug
 //@require "./util/diagnostic"

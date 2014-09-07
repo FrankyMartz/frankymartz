@@ -4,6 +4,8 @@
 
 @require "./variables"
 @require "../util/mixin"
+@require "../util/function"
+@require "./animation"
 
 /*! IE10: Windows 8, Windows Phone 8
  * Doesn't differentiate device width from viewport width
@@ -13,7 +15,8 @@
 
 
 /*! Fix Mobile Font Sizing */
-+responsiveBreakPoint($view.xs)
+
+@media only screen and (max-width: $view.sm +1)
 	html
 		-webkit-text-size-adjust: 100%
 		-moz-text-size-adjust: 100%
@@ -21,54 +24,242 @@
 
 *
 	box-sizing: border-box
-	text-rendering: optimizeLegibility
 
 body
+	min-height: 100%
+	min-height: 100vmin
+	min-width: $min-width
+	text-size-adjust: 100%
 	font-family: $font.serif
-	font-weight: normal
-	font-size: 1rem
+	font-weight: 400
+	font-size: 106.3%
 	font-smoothing(false)
-	line-height: 1.5rem
+	text-rendering: optimizeLegibility
+	line-height: 1.625em
 	color: $color.text.base
-	background-color: $color.white.pure
+	background-color: $color-background.body
+
+p
+	margin-bottom: 1.25em
+	hyphens: auto
+
+//article p+p
+	//margin-bottom: -2em
+	//text-indent: 1.5em
 
 h1,h2,h3,h4,h5,h6
 	font-family: $font.sans
-	font-weight: 700
-	line-height: 2em
+	line-height: 1.225em
+	font-weight: 900
+	margin-bottom: 0.15em
+	&:target
+		animation: attention 1.5s ease
+		padding-left: 0
+		border-left-width: 0
+		border-left-style: solid
 
 h1
-	font-weight: 900
-	font-size: 2em
+	font-size: pxToEm(42, rem)
+	margin-bottom: 0.2em
 
 h2
-	font-size: 1.5em
+	font-size: pxToEm(26, rem)
+
+h3
+	font-size: pxToEm(20, rem)
+
+h4
+	font-size: pxToEm(16, rem)
+
+h5
+	font-size: pxToEm(13, rem)
 
 small
 	font-size: 0.8em
 
+blockquote
+	font-style: italic
+	font-size: pxToEm(20, rem)
+
 a
-	color: $color.teal.dark
+	color: $color-link.body.default
 	text-decoration: none
 	&:visited
-		color: $color.salmon.light
-	&:hover
-		text-decoration: underline
+		color: $color-link.body.visited
+	&:hover:not(.head-nav-list__link),
+	&:hover > .octicon
+		color: $color-link.body.hover
 	&:active
-		color: $color.black.pure
+		color: $color-link.body.active
 
 code,pre
 	font-family: $font.mono
 	font-size: 0.8rem
 
+/*! sub,sup collapses. Require height for positioning */
+sub,sup
+	display: inline-block
+	position: relative
+	font-family: $font.sans
+	font-size: 70%
+	line-height: 0
+	min-height: 1rem
+	vertical-align: baseline
+
+sup
+	top: -0.5em
+
+sub
+	bottom: -0.25em
+
+b,strong
+	font-weight: bold
+
+i,em
+	font-style: italic
+
+hr
+	border:0
+	border-bottom: 1px dashed $color.grey.light
+	width: 100%
+	height: 0
+
+img
+	-ms-interpolation-mode: bicubic
+
+svg:not(:root)
+	overflow: hidden
+
+figure
+	margin-top: 2rem
+	margin-bottom: 2.5rem
+	border: solid 10px $color.white.grey
+	& > img
+		width: 100%
+		height: auto
+
+figcaption
+	padding: 1.25rem 1rem 1rem 1rem
+	background-color: $color.white.grey
+	line-height: 1.5em
+	font-family: $font.sans
+	font-size: 0.8rem
+	text-align: center
+
 ::selection
-	color: $color.white.pure
-	background-color: $color.salmon.base
-	font-smoothing(true)
+	color: $color.text.base
+	background-color: $color.yellow.base
+
 
 /*! Autoprefixer enjoys removing font-smoothing; ugh.
  * Use this to keep things DRY
  */
 .font-smoothing
 	font-smoothing(true)
+
+.footnotes
+	width: 100%
+	border-top: 1px dashed $color.grey.light
+	margin-top: 3rem
+	padding: 3em 1em 3em 2em
+	font-size: 0.8rem
+	line-height: 1.5em
+	& code, & pre
+		font-size: 0.75rem
+
+.footnote
+	position: relative
+	font-family: $font.sans
+
+// Easy to spot footnote
+sup[id^="fnref:"]:target .footnote
+	animation: attention--fnref 1s ease-in-out
+
+li[id^="fn:"]:target
+	border-left-style: solid
+	animation: attention 1s ease
+
+.link
+	display:inline-block
+	color: $color-link.body.default
+	text-decoration: none
+	cursor: pointer
+	&:hover,
+	&:hover > .octicon,
+	&:hover > .fa
+		color: $color-link.body.hover
+	&:active
+		color: $color-link.body.active
+
+.no-break
+	display:inline-block
+
+.transparent
+	opacity: 0
+
+/*! "Read More?" & "Read Less?"
+ * Only configure if JavaScript is enabled
+ */
+//.js
+.js .more-less,
+.js .more-less sup[id^="fnref:"]
+	display: none
+
+.no-js .more-less--link
+	display:none
+	font-style: italic
+
+
+/*! Octicon - Extras*/
+.octicon--flip-h
+	transform: scale(-1, 1)
+
+.octicon--flip-v
+	transform: scale(1, -1)
+
+
+
+/*! Base: Screen >= Tablets
+ * ===========================================*/
+
++responsiveBreakPoint($view.sm)
+	body
+		font-size: 112.5%
+		line-height: 1.65em
+
+	h1,h2,h3,h4,h5,h6
+		font-weight: 900
+
+	h1
+		font-size: pxToEm(45, rem)
+
+	h2
+		font-size: pxToEm(29, rem)
+
+	h3
+		font-size: pxToEm(23, rem)
+
+	h4
+		font-size: pxToEm(18, rem)
+
+	h5
+		font-size: pxToEm(14, rem)
+
+	time
+		font-size: pxToEm(14, rem)
+
+	blockquote
+		font-size: pxToEm(24, rem)
+
+	figure
+		margin: 0.5rem 1rem
+
+
+
+/*! Base: Screen >= Tablets
+ * ===========================================*/
+
++responsiveBreakPoint($view.md)
+	body
+		font-size: 125%
 

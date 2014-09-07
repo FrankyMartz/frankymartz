@@ -1,45 +1,50 @@
-<footer class="footer">
+<footer class="l-cell--full l-flex--column footer">
 
-  <div class="footer-directory">
-    <!-- Column One -->
-    <nav class="footer-directory-column">
-      <ul>
-        <li>{{ site.title }}</li>
-        <li>{% include email.html %}</li>
-      </ul>
-    </nav>
-    <!-- Column Two -->
-    <nav class="footer-directory-column">
-      <ul>
-        <li>
-          <a href="{{ site.github }}">
-            <i class="octicon octicon-octoface"></i>
-            <span class="username">{{ site.username }}</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ site.twitter }}">
-            <i class="fa fa-twitter fa-lg"></i>
-            <span class="username">{{ site.username }}</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ site.instagram }}">
-            <i class="fa fa-instagram fa-lg"></i>
-            <span class"username">{{ site.username }}</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- Column Three -->
-    <div class="footer-directory-column">
-      <p>{{ site.description }}</p>
+  <div class="l-flex--gutters l-flex--row footer__nav">
+
+    <div class="l-cell--full l-cell-md--reset footer-nav__connect">
+      <div class="footer-nav-connect__header">{{ site.title }}</div>
+      <p>{% include email_footer.html %}</p>
     </div>
+
+    <div class="l-cell--full l-cell-md--reset footer-nav__description">
+      <span>{{ site.description }}</span>
+    </div>
+
+    <ul class="l-cell--full l-cell-md--reset footer-nav__social">
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.github }}" title="Franky">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-github-alt fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.twitter }}">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.instagram }}">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.url }}/feed.xml">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+    </ul>
+
   </div>
 
-  <div class="footer-copyright" role="contentinfo">
+  <div class="l-flex--gutters l-flex--column footer-copyright" role="contentinfo">
     <p>&copy; {{ site.author }} 2014. All Rights Reserved.</p>
-    <a class="footer-copyright-cc" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"></a>
+    <a class="footer-copyright__cc" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+      <img alt="Creative Commons License" width="89" height="17" src="{{ "img/global/copyright-creative-commons.png" | prepend: site.cdn}}" />
+    </a>
   </div>
 
 </footer>

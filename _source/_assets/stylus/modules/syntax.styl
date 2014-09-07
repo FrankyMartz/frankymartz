@@ -3,6 +3,10 @@
  * Base16 Eighties Dark
  * Originally designed by Chris Kempson (http://chriskempson.com)
  *
+ * { highlight ruby } no number lines
+ * { highlight ruby linenos }
+ * { highlight ruby linenos=table } copy friendly
+ *
  * Author: Franky Martinez <frankymartz@gmail.com>
  * ========================================================================== */
 
@@ -13,6 +17,7 @@ $current-line = #393939
 $selection = #515151
 $foreground = #f2f0ec
 $comment = #747369
+$linenos = #393939
 $red = #f2777a
 $orange = #f99157
 $yellow = #ffcc66
@@ -21,10 +26,37 @@ $aqua = #66cccc
 $blue = #6699cc
 $purple = #cc99cc
 
+$salmon = #fc8472
 
 // Syntax
 // =============================================
+.highlighttable
+	width: auto
+	margin: 0 0 1.5rem 0
+	border-left: 0.3em solid $salmon
+	line-height: 1em
+	.highlight
+		margin: 0
+		padding: 0.5em
+		border-left: none
+	.code
+		width: 100%
+		background-color: $background
+	.linenos
+		padding: 0 0.25em
+		min-width: 2em
+		text-align: right
+		color: $comment
+		background-color: $linenos
+
 .highlight
+	margin: 0 0 1.5rem 0
+	padding: 0.5em 0.75em
+	border-left: 0.3em solid $salmon
+	line-height: 1em
+	white-space: pre
+	word-wrap: normal
+	overflow-x: auto
 	background: $background
 	color: $foreground
 	.hll
@@ -159,5 +191,8 @@ $purple = #cc99cc
 	.il
 		color: $orange  /* Literal.Number.Integer.Long */
 	.lineno
+		display: inline-block
+		padding: 0 0.5em
+		text-align: right
+		border-right: 1px solid $comment
 		color: $comment  /* Line Number */
-

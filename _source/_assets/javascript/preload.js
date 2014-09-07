@@ -1,13 +1,11 @@
 'use strict';
 /** =========================================================================
- * FrankyMartz.com JavaScript chunky goodness.
+ * FrankyMartz.com JavaScript Preload
  *
  * @author Franky Martinez <frankymartz@gmail.com>
  * @copyright FrankyMartz 2014
  * ========================================================================== */
 
-// Global
-require('./global/read-more-less');
+// Squash Windows Phone bug
+require('./global/ie10-fix');
 
-// Pages
-require('./pages/foreword');

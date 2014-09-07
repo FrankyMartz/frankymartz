@@ -1,0 +1,73 @@
+/*! ==========================================
+ * Animation
+ * ========================================== */
+
+@require "./variables"
+
+
+/*! General Hospital
+ * Version: 1.0.0
+ * ========================================== */
+
+@keyframes fade--in
+	0%
+		opacity: 0
+	100%
+		opacity: 1
+
+
+@keyframes fade--out
+	0%
+		opacity: 1
+	100%
+		opacity: 0
+
+
+/*! Attention Mention
+ * Version: 1.0.0
+ * ========================================== */
+
+@keyframes attention
+	0%
+		border-left-width: 0
+		padding-left: 0
+		border-left-color: $color.salmon.base
+	25%
+		border-left-width: 1rem
+		padding-left: 0.25em
+		border-left-color: $color.salmon.base
+	100%
+		border-left-width: 0
+		padding-left: 0
+		border-left-color: transparent
+
+@keyframes attention--fnref
+	0%
+		top: 0
+		background-color: $color.salmon.base
+	50%
+		top: 1em
+	100%
+		top: 0
+		background-color: transparent
+
+
+/*! Clicky
+ * Version: 1.0.0
+ * ========================================== */
+
+@keyframes clicky
+	0%
+		transform: scale(0, 0.1)
+		color: transparent
+	30%
+		transform: scale(0, 0.1)
+	60%
+		transform: scale(1, 0.1)
+	70%
+		transform: scale(1, 0.1)
+		color: transparent
+	100%
+		transform: scaleY(1, 1)
+		color: $color.text.base
+

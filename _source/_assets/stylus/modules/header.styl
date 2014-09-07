@@ -1,34 +1,97 @@
 /*! ==========================================
  * Header
+ *
+ * .head
+ * .head__logo
+ * .head-logo__svg
+ * .head-logo-svg__border
+ * .head-logo-svg__fm
+ * .head__nav
+ * .head-nav__list
+ * .head-nav-list__link
+ *
  * ========================================== */
 @require "../util/function"
 
-.header
-	display: flex
-	flex-direction: column
-	justify-content: center
+.head
+	margin-bottom: 1rem
+	border-top: #FFF solid 6px
 	align-items: center
-	color: $color.white.pure
+	background-color: $color.salmon.base
+	color: $color.black.red
 	font-family: $font.sans
 	font-smoothing(true)
-	background: $color.salmon.base
-	border-top: $color.salmon.light solid 6px
 
-.header-logo
-	width: 80px
-	height: 80px
-	margin: 1rem auto
-	border-radius: 50%
-	background-color: $color.white.pure
+.head-logo-svg__border
+	transition-property: fill, stroke
+	transition-duration: 0.2s
+	transition-timing-function: ease-out
+	fill: alpha($color.grey.base, 0.0)
 
-.nav
-	margin: 1rem auto
+.head__logo
+	display: block
+	height: 100px
+	width: 260px
+	margin-top: 36px
+	&:hover .head-logo-svg__border
+		stroke: #000
+		fill: $color.grey.base
 
-.nav-link
-	padding-bottom: 0.1em
-	font-size: 0.85em
-	color: $color.white.pure
-	text-shadow: 0 0.15em 1px $color.salmon.dark
+
+.no-svg .head__logo
+	background-origin: content-box
+	background-image: url("{{ 'img/global/2014_06_brand_frankymartz.png' | prepend:site.cdn }}")
+
+.head__nav
+	margin-top: 1.6em
+	margin-bottom: 1.6em
+	font-weight: 700
+	//letter-spacing: 0.01em
+
+.head-nav__list
+	justify-content: center
+	& > li:not(:first-child)
+		padding-left: 1em
+
+.head-nav-list__link
+	padding-bottom: 0.25em
+	border-bottom: 0
+	color: $color-link.head.default
 	&:hover
 		text-decoration: none
-		border-bottom: $color.white.pure solid 0.2em
+		border-bottom-style: solid
+		border-bottom-width: 0.35em
+	&:active
+		color: $color-link.head.active
+	&:visited
+		color: $color-link.head.visited
+
+
+
+/*! Screen >= Tablet
+ * ===========================================*/
++responsiveBreakPoint($view.sm)
+	.head
+		background-color: #FFF
+		border-top-color: $color.salmon.base
+		border-bottom: 1px dashed $color.grey.light
+		font-smoothing(false)
+
+	.no-svg .head__logo
+		background-position-y: 100%
+
+	.head-logo-svg__fm
+		stroke: $color.grey.base
+		fill: transparent
+
+	.head__nav
+		margin-top: 2em
+		margin-bottom: 1em
+		font-weight: 400
+	
+	.head-nav__list > li:not(:first-child)
+		padding-left: 1.25em
+
+
+	.head-nav-list__link
+		padding-bottom: 0.2em

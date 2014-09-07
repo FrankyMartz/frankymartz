@@ -1,7 +1,8 @@
-{% assign img_url = '/assets/img/' %}
-{% assign icon_url = '/assets/img/root/' %}
-{% assign css_url = '/assets/css/' %}
-{% assign js_url = '/assets/js/' %}
+{% capture img_url %}{{ 'img/' | prepend: site.cdn }}{% endcapture %}
+{% capture icon_url %}{{ 'img/root/' | prepend: site.cdn }}{% endcapture %}
+{% capture css_url %}{{ 'css/' | prepend: site.cdn }}{% endcapture %}
+{% capture js_url %}{{ 'js/' | prepend: site.cdn }}{% endcapture %}
+
 {% comment %}
 <!-- Optimization is occuring where this runs only once for entire site. -->
 {% assign page_url = {{ page.url | replace:'index.html','' | prepend: site.url }} %}
@@ -33,7 +34,7 @@
   <meta property="og:site_name" content="frankymartz">
   <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.url }}">
   <meta property="og:description" content="{{ description }}">
-  <meta property="og:image" content="{{ page.og_image | ifelse: page.og_image, 'root/ogimage.png' | prepend: img_url }}">
+  <meta property="og:image" content="{{ page.og_image | ifelse: page.og_image, 'ogimage.png' | prepend: icon_url }}">
   <!-- twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{{ title }}">
@@ -50,18 +51,19 @@
   <link rel="apple-touch-icon" href="{{ 'touch-icon-ipad-retina.png' | prepend: icon_url }}" sizes="152x152">
   <meta name="msapplication-config" content="{{ '/ieconfig.xml' }}">
   <!-- CSS -->
-  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic|Noticia+Text:400,700,400italic,700italic'>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato:400,700,900|Noticia+Text:400,700,400italic,700italic">
+  {% if page.octicon %}
+  <link rel="stylesheet" type="text/css" href="{{ site.cdn }}fonts/octicons/octicons.css">
+  {% endif %}
+  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="{{ 'main.css' | prepend: css_url }}">
-  <link rel="stylesheet" type="text/css" href="{{ 'octicons/octicons.css' | prepend: css_url }}">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   {% if page.stylesheet %}
-  <link rel="stylesheet" type="text/css" href="{{ page.stylesheet | prepend: css_url }}">
+  <link rel="stylesheet" type="text/css" href="{{ page.stylesheet | prepend: site.cdn }}">
   {% endif %}
-  {% if page.syntax %}
-  <link rel="stylesheet" type="text/css" href="{{ 'syntax.css' | prepend: css_url }}">
-  {% endif %}
-  {% if page.jsPrepend %}
   <!-- JavaScript -->
-  <script type="text/javascript" src="{{ page.jsPrepend | prepend: js_url }}">
+  <script type="text/javascript" src="{{ 'preload.js' | prepend: js_url }}"></script>
+  <script type="text/javascript" src="{{ 'vendor/modernizr.custom.33497.js' | prepend: js_url }}"></script>
+  {% if page.jsPrepend %}
+  <script type="text/javascript" src="{{ page.jsPrepend | prepend: js_url }}"></script>
   {% endif %}
 </head>

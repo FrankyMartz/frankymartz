@@ -1,0 +1,18 @@
+<svg width="260" height="100" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>
+        2014_06_brand_frankymartz
+    </title>
+    <desc>
+        Created with Sketch.
+    </desc>
+    <g sketch:type="MSArtboardGroup" fill="none">
+        <path d="M222 20h18v-16h-220v16h18v18h-18v-18h-16v60h16v-18h18v18h-18v16h220v-16h-18v-18h18v18h16v-60h-16v18h-18v-18z" sketch:type="MSShapeGroup" stroke-width="8" stroke="#333" opacity=".15"/>
+        <g sketch:type="MSLayerGroup">
+            <path d="M130 61l-45-22v34.935l45 22 47-22v-34.935l-47 22z" fill="#9B9B9B" sketch:type="MSShapeGroup"/>
+            <path d="M85 4v34.786l44.008 21.724h.633l.358-.5v-56.01h-45z" stroke="#fff" stroke-width="8" fill="#9B9B9B" sketch:type="MSShapeGroup"/>
+            <path stroke="#fff" stroke-width="8" fill="#D8D8D8" sketch:type="MSShapeGroup" d="M85 4h22v92h-22zm70 45.3v46.7h22v-57l-22 10.3z"/>
+            <path d="M130 61l-45-22v34.935l45 22 47-22v-34.935l-47 22z" stroke="#fff" stroke-width="8" sketch:type="MSShapeGroup"/>
+            <path d="M85 31h70m-70-27h92v8" stroke="#fff" stroke-width="8" stroke-linecap="square" sketch:type="MSShapeGroup"/>
+        </g>
+    </g>
+</svg>

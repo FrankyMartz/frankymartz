@@ -47,12 +47,11 @@ clearfix()
 	zoom: 1
 
 
-// Responsive Breakpoints
+// Responsive Breakpoints (Mobile First)
 // =============================================
 responsiveBreakPoint($media)
-	@media only screen and (min-width: $media)
+	@media only screen and (min-width: $media + 1)
 		{block}
-
 
 // Image Handling
 // =============================================

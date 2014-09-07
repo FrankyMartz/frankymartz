@@ -12,6 +12,27 @@ github: http://github.com/frankymartz
 twitter: http://twitter.com/frankymartz
 instagram: http://instagram.com/frankymartz
 
+cdn: "/assets/"
+
+
+################################################################################
+# Jekyll Configuration
+################################################################################
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
 
 ################################################################################
 # Jekyll Configuration
@@ -25,6 +46,7 @@ highlighter: pygments
 permalink: /:categories/:title
 
 markdown: kramdown
+lsi: true
 
 kramdown:
   input: GFM

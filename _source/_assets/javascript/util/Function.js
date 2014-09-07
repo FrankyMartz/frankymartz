@@ -1,10 +1,11 @@
 'use strict';
-/**
+/** =========================================================================
  * Bind Method for older browsers
  *
  * @author Douglas Crockford
  * @param {Function} oThis - Object to bind this to
- */
+ * ========================================================================== */
+
 if (!Function.prototype.bind) {
 	Function.prototype.bind = function (oThis) {
 		if (typeof this !== "function") {

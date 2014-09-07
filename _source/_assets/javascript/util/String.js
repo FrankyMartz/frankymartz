@@ -1,5 +1,5 @@
 'use strict';
-/**
+/** =========================================================================
  * Format String method
  *
  * @author Adam LeVasseur
@@ -10,7 +10,8 @@
  *
  * @param {...String*} arguments - comma delimited list of strings for replacement
  * @returns {String}
- */
+ * ========================================================================== */
+
 String.prototype.format = function () {
   var args = arguments;
   return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function (m, n) {
@@ -21,25 +22,29 @@ String.prototype.format = function () {
 };
 
 
-/**
+
+/** =========================================================================
  * String method for verifying suffix
  *
  * @author Josh Stodola
  * @param {String} suffix - suffix to verify on string.
  * @returns {Boolean}
- */
+ * ========================================================================== */
+
 String.prototype.endsWith = function (suffix) {
   return (this.substr(this.length - suffix.length) === suffix);
 };
 
 
-/**
+
+/** =========================================================================
  * String method for verifying prefix
  *
  * @author Josh Stodola
  * @param {String} prefix - prefix to verify on string.
  * @returns {Boolean}
- */
+ * ========================================================================== */
+
 String.prototype.startsWith = function(prefix) {
   return (this.substr(0, prefix.length) === prefix);
 };

@@ -1,5 +1,5 @@
 'use strict';
-/**
+/** =========================================================================
  * Converts Date argument into laymans terms relative to now.
  *
  * @author Franky Martinez <frankymartz@gmail.com>
@@ -11,7 +11,8 @@
  *
  * @param {String | Number} datetime - Date that will be converted
  * @returns {String} Date in layman terms
- */
+ * ========================================================================== */
+
 module.exports = function(datetime) {
 
 	var time = {

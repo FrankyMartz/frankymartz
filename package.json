@@ -34,6 +34,7 @@
     "glob": "^3.2.9",
     "gulp": "^3.6.2",
     "gulp-autoprefixer": "*",
+    "gulp-gzip": "*",
     "gulp-minify-css": "*",
     "gulp-notify": "*",
     "gulp-rev": "^0.3.2",
@@ -41,6 +42,7 @@
     "gulp-streamify": "0.0.5",
     "gulp-stylus": "*",
     "gulp-util": "*",
+    "gulp-watch": "^1.0.2",
     "stylus": "*",
     "vinyl-source-stream": "^0.1.1",
     "watchify": "*"

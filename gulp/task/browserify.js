@@ -19,11 +19,11 @@ var gutil = require('gulp-util');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var fromArgs = require('watchify/bin/args');
-var shim = require('browserify-shim');
 //var errorHandler = require('../util/errorHandler');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var rev = require('gulp-rev');
+var gzip = require('gulp-gzip');
 
 /**
  * Reference [Browserify]{@link github.com/substack/node-browserify} for API
@@ -32,6 +32,7 @@ var rev = require('gulp-rev');
  * @typedef {Object} BrowserifyModuleOpts
  * @property {Array.<String>} src - File or Glob to process
  * @property {String} dest - Destination of output
+ * @property {Object} [gzip] -Reference [gulp-gzip]{@link github.com/jstuckey/gulp-gzip} documentation
  */
 
 /**
@@ -68,6 +69,7 @@ module.exports = function(name, dep, args) {
     gulp.task(element, dep, function() {
       var opts = args.browserify || {};
       var data = {};
+			args.gzip = args.gzip || { append: false, gzipOptions: { level: 9 } };
 
 			// Watchify Required Properties
 			opts.cache = opts.cache || {};
@@ -117,6 +119,7 @@ module.exports = function(name, dep, args) {
 					.on('error', gutil.log.bind(gutil, 'Browserify Error'))
           .pipe(source(path.basename(element)))
           .pipe(streamify(gutil.env === 'production' ? rev() : gutil.noop()))
+					.pipe(streamify(gutil.env === 'production' ? gzip(args.gzip) : gutil.noop()))
           .pipe(gulp.dest(args.dest));
       }
 

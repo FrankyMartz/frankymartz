@@ -17,7 +17,9 @@ var stylus = require('gulp-stylus');
 var prefix = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var rev = require('gulp-rev');
+var gzip = require('gulp-gzip');
 var errorHandler = require('../util/errorHandler');
+var watch = require('gulp-watch');
 /**
  * Reference package documentation for available API configuration options.
  * @summary module:gulp/stylus Configuration Object.
@@ -27,6 +29,7 @@ var errorHandler = require('../util/errorHandler');
  * @property {Object} [stylus] - Reference [gulp-stylus]{@link github.com/stevelacy/gulp-stylus} documentation
  * @property {Array.<String>} [autoprefixer] - Reference [gulp-autoprefixer]{@link github.com/Metrime/gulp-autoprefixer} documentation
  * @property {Object} [minifycss] - Reference [gulp-minify-css]{@link github.com/jonathanepollack/gulp-minify-css} documentation
+ * @property {Object} [gzip] -Reference [gulp-gzip]{@link github.com/jstuckey/gulp-gzip} documentation
  */
 
 /**
@@ -64,14 +67,16 @@ module.exports = function(name, dep, args) {
   args.stylus.errors = true;
   args.autoprefixer = args.autoprefixer || ['last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'];
   args.minifycss = args.minifycss || {};
+	args.gzip = args.gzip || { append: false, gzipOptions: { level: 9 } };
   // Build Gulp Task
   gulp.task(name, dep, function() {
-    return gulp.src(args.src)
+		watch(args.src)
       .pipe(stylus(args.stylus))
       .on('error', errorHandler)
       .pipe(prefix(args.autoprefixer, {cascade: true}))
       .pipe(gutil.env === 'production' ? minifyCSS(args.minifycss) : gutil.noop())
       .pipe(gutil.env === 'production' ? rev() : gutil.noop())
+      .pipe(gutil.env === 'production' ? gzip(args.gzip) : gutil.noop())
       .pipe(gulp.dest(args.dest));
   });
 };

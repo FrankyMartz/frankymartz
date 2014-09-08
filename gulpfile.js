@@ -2,6 +2,9 @@
 
 var gulp = require('gulp');
 var g = require('./gulp');
+var watch = require('gulp-watch');
+var gzip = require('gulp-gzip');
+var gutil = require('gulp-util');
 
 // Configuration
 var app = {
@@ -13,7 +16,11 @@ var app = {
     src: ["./_source/_assets/stylus/*.styl"],
     dest: './_source/assets/css/',
     watch: './_source/_assets/stylus/**/*.styl'
-  }
+  },
+	jekyll: {
+	    watch: './public/**/*.html',
+			dest: './public/'
+	}
 };
 
 // Clean
@@ -42,11 +49,15 @@ g.addTask('stylus', ['clean-css'], {
   autoprefixer: ['last 2 version', 'Firefox ESR', 'safari > 5.1', 'opera 12.1', 'ios > 6', 'android > 2.1']
 });
 
-// Watch
-gulp.task('watch', function() {
-  gulp.watch(app.styl.watch, ['stylus']);
-});
 
 gulp.task('build', ['browserify', 'stylus']);
-gulp.task('default', ['clean', 'build', 'watch']);
+
+gulp.task('default', ['clean', 'build'], function() {
+	if (gutil.env === 'production') {
+		// GZIP Jekyll HTML files
+		watch(app.jekyll.watch)
+			.pipe(gzip({ append: false, gzipOptions: { level: 9 } }))
+			.pipe(gulp.dest(app.jekyll.dest));
+	}
+});
 

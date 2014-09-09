@@ -26,6 +26,7 @@ var watch = require('gulp-watch');
  * @typedef {Object} StylModuleOpts
  * @property {(String|Array.<String>)} src - File or Glob to process
  * @property {String} dest - Destination of output
+ * @property {String} watch - Path to observe
  * @property {Object} [stylus] - Reference [gulp-stylus]{@link github.com/stevelacy/gulp-stylus} documentation
  * @property {Array.<String>} [autoprefixer] - Reference [gulp-autoprefixer]{@link github.com/Metrime/gulp-autoprefixer} documentation
  * @property {Object} [minifycss] - Reference [gulp-minify-css]{@link github.com/jonathanepollack/gulp-minify-css} documentation
@@ -70,7 +71,7 @@ module.exports = function(name, dep, args) {
 	args.gzip = args.gzip || { append: false, gzipOptions: { level: 9 } };
   // Build Gulp Task
   gulp.task(name, dep, function() {
-		watch(args.src)
+		gulp.src(args.src)
       .pipe(stylus(args.stylus))
       .on('error', errorHandler)
       .pipe(prefix(args.autoprefixer, {cascade: true}))
@@ -79,4 +80,9 @@ module.exports = function(name, dep, args) {
       .pipe(gutil.env === 'production' ? gzip(args.gzip) : gutil.noop())
       .pipe(gulp.dest(args.dest));
   });
+
+	// If Stylus files change rerun task
+	watch(args.watch, function(){
+		gulp.start(name);
+	});
 };

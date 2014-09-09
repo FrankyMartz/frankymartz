@@ -46,6 +46,7 @@ g.addTask('browserify', ['clean-js'], {
 g.addTask('stylus', ['clean-css'], {
   src: app.styl.src,
   dest: app.styl.dest,
+	watch: app.styl.watch,
   autoprefixer: ['last 2 version', 'Firefox ESR', 'safari > 5.1', 'opera 12.1', 'ios > 6', 'android > 2.1']
 });
 

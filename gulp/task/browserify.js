@@ -67,64 +67,44 @@ module.exports = function(name, dep, args) {
 
   function browserifyFile(element) {
     gulp.task(element, dep, function() {
-      var opts = args.browserify || {};
-      var data = {};
 			args.gzip = args.gzip || { append: false, gzipOptions: { level: 9 } };
 
-			// Watchify Required Properties
-			opts.cache = opts.cache || {};
-			opts.packageCache = opts.packageCache || {};
-			opts.fullPaths = opts.fullPaths || true;
+			var bundler = watchify(
+				browserify({
+					entries: [element],
+					debug: true,
+					// Watchify Required Properties
+					cache: {},
+					packageCache: {},
+					fullPaths: true
+				})
+			);
 
-      // sort out options
-      ['noParse','extensions','resolve','basedir'].forEach(function(opt){
-        if (opts[opt]) {
-          data[opt] = opts[opt];
-          delete opts[opt];
-        }
-      });
+      function bundle() {
+				var filename = path.basename(element);
+				var startTime = process.hrtime();
 
-      data.entries = element;
-
-      opts.bundle = opts.bundle || {debug: true};
-
-      // nobuiltin options
-      if (!opts.builtins && opts.nobuiltins) {
-        var nob = opts.nobuiltins;
-        var builtins = require('.node_modules/browserify/lib/builtins');
-        nob = typeof nob === 'string' ? nob.split(' ') : nob;
-
-        var i;
-        for (i = 0; i < nob.length ; i++) {
-          delete builtins[nob[i]];
-        }
-        opts.builtins = builtins;
-      }
-
-			var bundler = watchify(browserify(data, opts));
-
-      // add options to bundler
-      ['exclude','add','external','transform','ignore','require'].forEach(function(method){
-        if (!opts[method]) {
-          return;
-        }
-        [].concat(opts[method]).forEach(function(foo){
-           bundler[method].apply(bundler, [].concat(foo));
-        });
-      });
-
-      function rebundle() {
-        return bundler.bundle()
-          //.on('error', errorHandler)
+        return bundler
+					.bundle()
 					.on('error', gutil.log.bind(gutil, 'Browserify Error'))
-          .pipe(source(path.basename(element)))
+          .pipe(source(filename))
           .pipe(streamify(gutil.env === 'production' ? rev() : gutil.noop()))
 					.pipe(streamify(gutil.env === 'production' ? gzip(args.gzip) : gutil.noop()))
-          .pipe(gulp.dest(args.dest));
+          .pipe(gulp.dest(args.dest))
+					.on('end', function(){
+						var diff = process.hrtime(startTime);
+						var prettyTime = diff[0] + (diff[1] / 1e6);
+						prettyTime = prettyTime.toFixed(2);
+						gutil.log(
+							gutil.colors.blue('Browserify:'), 'Updated',
+							gutil.colors.yellow("'" + filename + "'"), 'in',
+							gutil.colors.magenta(prettyTime + 'ms'));
+					});
+
       }
 
-      bundler.on('update', rebundle);
-      return rebundle();
+      bundler.on('update', bundle);
+      return bundle();
     });
   }
 

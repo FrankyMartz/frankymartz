@@ -69,16 +69,14 @@ module.exports = function(name, dep, args) {
     gulp.task(element, dep, function() {
 			args.gzip = args.gzip || { append: false, gzipOptions: { level: 9 } };
 
-			var bundler = watchify(
-				browserify({
-					entries: [element],
-					debug: true,
-					// Watchify Required Properties
-					cache: {},
-					packageCache: {},
-					fullPaths: true
-				})
-			);
+			var bundler = browserify({
+				entries: [element],
+				debug: true,
+				// Watchify Required Properties
+				cache: {},
+				packageCache: {},
+				fullPaths: true
+			});
 
       function bundle() {
 				var filename = path.basename(element);
@@ -88,8 +86,8 @@ module.exports = function(name, dep, args) {
 					.bundle()
 					.on('error', gutil.log.bind(gutil, 'Browserify Error'))
           .pipe(source(filename))
-          .pipe(streamify(gutil.env === 'production' ? rev() : gutil.noop()))
-					.pipe(streamify(gutil.env === 'production' ? gzip(args.gzip) : gutil.noop()))
+          .pipe(streamify(gutil.env.type === 'production' ? rev() : gutil.noop()))
+					.pipe(streamify(gutil.env.type === 'production' ? gzip(args.gzip) : gutil.noop()))
           .pipe(gulp.dest(args.dest))
 					.on('end', function(){
 						var diff = process.hrtime(startTime);
@@ -103,7 +101,12 @@ module.exports = function(name, dep, args) {
 
       }
 
-      bundler.on('update', bundle);
+			// Disable Watch on 'production' build
+			if (gutil.env.type !== 'production') {
+				bundler = watchify(bundler);
+				bundler.on('update', bundle);
+			}
+
       return bundle();
     });
   }

@@ -1,8 +1,15 @@
 'use strict';
 
+/**
+ * GulpFile
+ * or the glue.
+ *
+ * @example
+ * $ gulp --type production
+ */
+
 var gulp = require('gulp');
 var g = require('./gulp');
-var watch = require('gulp-watch');
 var gzip = require('gulp-gzip');
 var gutil = require('gulp-util');
 
@@ -18,7 +25,7 @@ var app = {
     watch: './_source/_assets/stylus/**/*.styl'
   },
 	jekyll: {
-	    watch: './public/**/*.html',
+	    src: './public/**/*.html',
 			dest: './public/'
 	}
 };
@@ -54,9 +61,9 @@ g.addTask('stylus', ['clean-css'], {
 gulp.task('build', ['browserify', 'stylus']);
 
 gulp.task('default', ['clean', 'build'], function() {
-	if (gutil.env === 'production') {
+	if (gutil.env.type === 'production') {
 		// GZIP Jekyll HTML files
-		watch(app.jekyll.watch)
+		gulp.src(app.jekyll.src)
 			.pipe(gzip({ append: false, gzipOptions: { level: 9 } }))
 			.pipe(gulp.dest(app.jekyll.dest));
 	}

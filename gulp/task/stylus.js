@@ -75,14 +75,17 @@ module.exports = function(name, dep, args) {
       .pipe(stylus(args.stylus))
       .on('error', errorHandler)
       .pipe(prefix(args.autoprefixer, {cascade: true}))
-      .pipe(gutil.env === 'production' ? minifyCSS(args.minifycss) : gutil.noop())
-      .pipe(gutil.env === 'production' ? rev() : gutil.noop())
-      .pipe(gutil.env === 'production' ? gzip(args.gzip) : gutil.noop())
+      .pipe(gutil.env.type === 'production' ? minifyCSS(args.minifycss) : gutil.noop())
+      .pipe(gutil.env.type === 'production' ? rev() : gutil.noop())
+      .pipe(gutil.env.type === 'production' ? gzip(args.gzip) : gutil.noop())
       .pipe(gulp.dest(args.dest));
   });
 
-	// If Stylus files change rerun task
-	watch(args.watch, function(){
-		gulp.start(name);
-	});
+
+	// Disable Watch on 'production' build
+	if (gutil.env.type !== 'production') {
+		watch(args.watch, function(){
+			gulp.start(name);
+		});
+	}
 };

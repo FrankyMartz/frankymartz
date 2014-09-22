@@ -80,7 +80,7 @@ aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --exc
 
 ##= OTHER =======================================================================
 log 'green' "==> Syncronize everything else\n"
-aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun true --delete true --include "*.*" --exclude "*.html" --exclude "*.css" --exclude "*.js" --exclude "*.png" --exclude "*.jpg" --exclude "*.svg" --exclude "*.gif" --exclude "*.ico" --acl "public-read"
+aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --include "*.*" --exclude "*.html" --exclude "*.css" --exclude "*.js" --exclude "*.png" --exclude "*.jpg" --exclude "*.svg" --exclude "*.gif" --exclude "*.ico" --acl "public-read"
 
 ##===============================================================================
 

@@ -24,7 +24,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ title }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
   <meta name="description" content="{{ site.description }}">
   <meta name="author" content="{{ site.author }}">
   <meta name="copyright" content="Copyright {{ site.author }} 2014. All Rights Reserved.">
@@ -56,13 +56,13 @@
   <link rel="stylesheet" type="text/css" href="{{ site.cdn }}fonts/octicons/octicons.css">
   {% endif %}
   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="{{ 'main.css' | prepend: css_url }}">
+  <link rel="stylesheet" type="text/css" href="{{ 'main-6fe36f95.css' | prepend: css_url }}">
   {% if page.stylesheet %}
   <link rel="stylesheet" type="text/css" href="{{ page.stylesheet | prepend: site.cdn }}">
   {% endif %}
   <!-- JavaScript -->
-  <script type="text/javascript" src="{{ 'preload.js' | prepend: js_url }}"></script>
   <script type="text/javascript" src="{{ 'vendor/modernizr.custom.33497.js' | prepend: js_url }}"></script>
+  <script type="text/javascript" src="{{ 'preload-509283e7.js' | prepend: js_url }}"></script>
   {% if page.jsPrepend %}
   <script type="text/javascript" src="{{ page.jsPrepend | prepend: js_url }}"></script>
   {% endif %}

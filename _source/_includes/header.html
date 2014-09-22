@@ -1,6 +1,6 @@
 <header class=" l-cell--full l-flex--column head" role="banner">
 
-  <a class="head__logo" href="{{ site.baseurl }}/">
+  <a class="head__logo" href="{{ site.baseurl }}/" title="Home Page">
     <svg class="head-logo__svg" width="260" height="100" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
       <title>2014_06_brand_frankymartz</title>
       <desc>Created with Sketch.</desc>
@@ -21,7 +21,7 @@
     <ul class="l-flex--row head-nav__list">
       {% for page in site.pages %}
         {% if page.title %}
-        <li><a class="head-nav-list__link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title | downcase }}</a></li>
+          <li><a class="head-nav-list__link" href="{{ page.url | prepend: site.baseurl }}" title="{{ page.title }} Page">{{ page.title | downcase }}</a></li>
         {% endif %}
       {% endfor %}
     </ul>

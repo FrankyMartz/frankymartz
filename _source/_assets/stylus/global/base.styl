@@ -15,7 +15,6 @@
 
 
 /*! Fix Mobile Font Sizing */
-
 @media only screen and (max-width: $view.sm +1)
 	html
 		-webkit-text-size-adjust: 100%
@@ -24,6 +23,8 @@
 
 *
 	box-sizing: border-box
+	 -webkit-tap-highlight-color: rgba(0,0,0,0)
+	fontSmoothing(false)
 
 body
 	min-height: 100%
@@ -42,10 +43,6 @@ body
 p
 	margin-bottom: 1.25em
 	hyphens: auto
-
-//article p+p
-	//margin-bottom: -2em
-	//text-indent: 1.5em
 
 h1,h2,h3,h4,h5,h6
 	font-family: $font.sans
@@ -192,22 +189,24 @@ li[id^="fn:"]:target
 		color: $color-link.body.active
 
 .no-break
-	display:inline-block
+	white-space: nowrap
 
 .transparent
 	opacity: 0
 
 /*! "Read More?" & "Read Less?"
  * Only configure if JavaScript is enabled
+ *
+ * Best if nested in empty div.
  */
-//.js
-.js .more-less,
-.js .more-less sup[id^="fnref:"]
-	display: none
+
+.js .more-less
+	max-height: 0
+	overflow: hidden
+	transition: max-height 1s ease
 
 .no-js .more-less--link
 	display:none
-	font-style: italic
 
 
 /*! Octicon - Extras*/

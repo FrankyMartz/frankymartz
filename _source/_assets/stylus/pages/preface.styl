@@ -1,63 +1,59 @@
 /*! ==========================================
- * Foreword
+ * Preface
  *
- * .foreword
- * .foreword__fig
- * .foreword-fig__img
+ * .preface
+ * .preface__fig
+ * .preface-fig__img
  *
- * .foreword-fig--flip
- * .foreword-fig__side1
- * .foreword-fig__side2
- * .js-foreword-fig-side1--flip
- * .js-foreword-fig-side2--flip
+ * .preface-fig--flip
+ * .preface-fig__side1
+ * .preface-fig__side2
+ * .js-preface-fig-side1--flip
+ * .js-preface-fig-side2--flip
  *
- * .foreword__txt
- * .foreword-txt--wrap
- * .foreword-txt__button
- * .foreword-txt__description
+ * .preface__txt
+ * .preface-txt--wrap
+ * .preface-txt__button
+ * .preface-txt__description
  * ========================================== */
 
 @require '../util/function'
+@require '../global/animation'
 
-.foreword
+.preface
 	margin-top: 1.5rem
 	margin-left: auto
 	margin-right: auto
+	animation: fade--in 0.675s ease-in-out
 
-.foreword__fig
+.preface__fig
 	display: block
 	position: relative
 	margin: 0 auto
 	max-height: 450px
 	max-width: 450px
-	cursor: pointer
 
-.foreword-fig__img
+.preface-fig__img
 	max-width: 100%
 	height: auto
 
-.foreword__txt
+.preface__txt
 	width: 100%
-	height: 100%
-	margin: 0 auto
-	max-width: 450px
+	margin-top: 1.5rem
+	margin-bottom: 3rem
 
-.foreword-txt--wrap
+.preface-txt--wrap
 	width: 100%
 	height: 100%
 	max-height: 450px
 	min-height: 340px
 	justify-content: center
 
-.no-js .foreword-txt__button
-	display: none;
-
-.foreword-txt__button
+.preface-txt__button
 	position: relative
 	width: 5em
 	max-height: 4.5rem
-	margin-top: 1.5rem
-	margin-bottom: 2rem
+	margin: 0 auto 1.5rem auto
 	border-radius: 5px
 	background-image: linear-gradient($color-link.body.default, $color-link.body.default)
 	background-size: 100%
@@ -87,61 +83,59 @@
 	&:hover:after
 		height: 100%
 
-.js .foreword-txt__description
-	display: none
+.no-js .preface-txt__button
+	display: none;
 
-.foreword-txt__description
+.preface-txt__description
 	width: 100%
-	margin-top: 1.5em
-	margin-bottom: 2em
+
+.js .preface-txt__description
+	max-height: 0
+	overflow:hidden
+	transition: max-height 1s ease
 
 
 /*! Image Flip
  * Version: 1.0.0
  * ========================================== */
 
-// .foreword-fig--flip
-// .foreword-fig__side1
-// .foreword-fig__side2
-// .js-foreword-fig-side1--flip
-// .js-foreword-fig-side2--flip
-
-.foreword-fig--flip
+.preface-fig--flip
 	position: absolute
 	box-shadow: none
 	backface-visibility: hidden
 	transform-origin: 50% 50% 0
 	transition: all 1s
 
-.foreword-fig__side1
+.preface-fig__side1
 	transform: rotateX( 0deg )
 
-.foreword-fig__side2
+.preface-fig__side2
 	background-color: rgb(91,158,195)
-	/*margin-top: -100%;*/
 	transform: rotateX( 180deg )
 
-.js-foreword-fig-side1--flip
+.js-preface-fig-side1--flip
 	transform: rotateX( 0deg ) !important
 
-.js-foreword-fig-side2--flip
+.js-preface-fig-side2--flip
 	transform: rotateX( 180deg ) !important
 
 
-/*! Foreword: Screen >= Desktop
+
+/*! preface: Screen >= Tablet
+ * ===========================================*/
+
++responsiveBreakPoint($view.sm)
+	.preface__txt
+		margin-top: 1.5em
+		margin-bottom: 3rem
+
+
+
+/*! preface: Screen >= Desktop
  * ===========================================*/
 
 +responsiveBreakPoint($view.md)
-	.foreword__txt
-		margin-left: 1.5rem
-		min-height: 340px
-
-	.foreword-txt__button
-		align-self: center
-		margin-top: 0
-
-	.foreword-txt__description
-		margin-top: 0
-		margin-bottom: 0
-
+	.preface__txt
+		margin-top: 3rem
+		margin-bottom: 5rem
 

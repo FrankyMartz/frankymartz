@@ -12,7 +12,7 @@ permalink: /about/
       experimenting with technology, in critical thought, and solving puzzles.
     </p>
 
-    <div class="about-bio--more more-less">
+    <div class="about-bio--more more-less" data-max-height="30rem">
       <p>
         In 2005, I began my journey into web development building personal
         portfolio galleries for myself. Since then, I&rsquo;ve had contract work
@@ -41,9 +41,10 @@ permalink: /about/
   <section class="l-flex--gutters about__section">
     <h1 id="contact">Contact</h1>
     <p>
-      Please, feel free to throw me an email at {% include email.html %}. If you
-      just want to have a quick dialog, you can always reach me on Twitter &mdash;
-      <a href="{{ site.twitter }}" title="Follow me on Twitter">@frankymartz</a>.
+      Please, feel free to throw me an email at
+      {% include email.html %}<span class="about-contact__email no-break">frankymartz&#64;gm<i class="hidden">hotdog</i>ail&#46;com</span> .
+      If you just want to have a quick dialog, you can always reach me on
+      Twitter &mdash; <a class="no-break" href="{{ site.twitter }}" title="Follow me on Twitter">@frankymartz</a>
     </p>
     <p>Yes, I&rsquo;m interested in new projects and opportunities.</p>
   </section>
@@ -59,17 +60,19 @@ permalink: /about/
       &mdash; where colors and proportions were identified. Finally, its DNA was
       sequenced in MacVim.
     </p>
-    <p class="about-colophon--more more-less">
-      I&rsquo;m a firm believer in pushing technology forward. Modern browsers
-      are action packed with cool features that just break down in older browser
-      releases. So, from the beginning this site was built on top of the latest
-      web technologies; only limiting myself to adhere to Google&rsquo;s two version
-      <span class="no-break">support.<sup id="fnref:two_versions"><a class="footnote" href="#fn:two_versions">3</a></sup></span>
-    </p>
+    <div class="about-colophon--more more-less" data-max-height="20rem">
+      <p>
+        I&rsquo;m a firm believer in pushing technology forward. Modern browsers
+        are action packed with cool features that just break down in older browser
+        releases. So, from the beginning this site was built on top of the latest
+        web technologies; only limiting myself to adhere to Google&rsquo;s two version
+        <span class="no-break">support.<sup id="fnref:two_versions"><a class="footnote" href="#fn:two_versions">3</a></sup></span>
+      </p>
+    </div>
     <p class="link more-less--link" data-toggle-more=".about-colophon--more"><i class="fa fa-lg fa-chevron-circle-down"></i> Read More?</p>
 
     <figure class="about-colophon__fig">
-      <img class="about-colophon-fig__img" src="{{ site.cdn }}img/about/HackerProcess.png" alt="Development: Paper &rarr; Sketch 3 &rarr; MacVim">
+      <img class="about-colophon-fig__img" src="{{ site.cdn }}img/about/HackerProcess.png" title="The Project Development Cycle." alt="Development: Paper &rarr; Sketch 3 &rarr; MacVim">
       <figcaption>
       <span class="about-colophon-fig__title">The Development Process</span><br>
       <span class="about-colophon-fig__details">

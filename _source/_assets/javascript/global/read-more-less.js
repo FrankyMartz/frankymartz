@@ -1,3 +1,4 @@
+/*jslint browser:true*/
 'use strict';
 /** =========================================================================
  * Read More or Less
@@ -44,46 +45,85 @@ function escapeStr(str) {
 
 
 /**
+ * Reveal .moreless
+ * Set to 50rem because anything larger should be
+ * re-thought or a separate module.
+ *
+ * Best for Performance:
+ * [data-max-height] - explicit max-height
+ *
+ * @param {string | object} id - Element or identifier to hide
+ */
+function showMore(id) {
+	var obj = (typeof id === 'string') ? $(id) : id;
+	var maxHeight = obj.data('maxHeight') || '50rem';
+	obj.css('max-height', maxHeight);
+}
+module.exports.showMore = showMore;
+
+
+/**
+ * Hide .moreless
+ * @param {string | object} id - Element or identifier to hide
+ */
+function showLess(id) {
+	var obj = (typeof id === 'string') ? $(id) : id;
+	obj.css('max-height', 0);
+}
+module.exports.showMore = showLess;
+
+
+/**
  * Attach click event listener to .more-less--link
  */
 $('.more-less--link').each(function(){
+	// ".more-less--link": innerHTML
+	var moreText = ''.concat(fontAwesome(icon.less), ' Too Long?');
+	var lessText = ''.concat(fontAwesome(icon.more), ' Read More?');
+
+	var targetID = $(this).data('toggleMore');
+	var target = $(targetID);
+
+	var footnotes = target.find('sup[id^="fnref\\:"]');
+
+	footnotes.each(function(){
+		$(this)
+			.data('moreLessParent', targetID)
+			.data('isHidden', true);
+	});
+
 	var that = this;
-	// more-less--link html
-	var more = ''.concat(fontAwesome(icon.less), ' Too Long?');
-	var less = ''.concat(fontAwesome(icon.more), ' Read More?');
 	// Add Event Handler
 	$(this).click(function(){
-		var mlBlock = $( $(that).data('toggleMore') );
-		var mlBlockChildren = mlBlock.find('sup[id^="fnref\\:"]');
-
-		if (mlBlock.is(':visible')) {
-			mlBlockChildren.each(function(){
-				$(this).css('display', 'none');
+		var maxHeight = parseInt(target.css('max-height'), 10);
+		if (maxHeight > 0) {
+			showLess(target);
+			$(that).html(lessText);
+			footnotes.each(function(){
+				$(this).data('isHidden', true);
 			});
-			mlBlock.hide(400);
-			$(that).html(less);
 		}
 		else {
-			mlBlockChildren.each(function(){
-				$(this).css('display', 'inline-block');
+			showMore(target);
+			$(that).html(moreText);
+			footnotes.each(function(){
+				$(this).data('isHidden', false);
 			});
-			mlBlock.show(400);
-			$(that).html(more);
 		}
 	});
 });
 
 
 /**
- * Traverse fnRefString ancestors to locate and click corresponding
- * .more-less--link
+ * Click ".more-less--link" corresponding to footnote ".more-less" parent
  *
- * @param {string} fnRefString - valid DOM element identifier
+ * @param {string} id - valid DOM element identifier
  */
-function clickCorrespondingMoreLess(fnRefString) {
-	var fnRef = $( fnRefString );
-	if (fnRef.is(':hidden')) {
-		fnRef.closest('.more-less').siblings('.more-less--link').click();
+function clickCorrespondingMoreLess(id) {
+	var footnote = $(id);
+	if (footnote.data('isHidden')) {
+		var parentID = footnote.data('moreLessParent');
+		$(parentID).siblings('.more-less--link').click();
 	}
 }
 

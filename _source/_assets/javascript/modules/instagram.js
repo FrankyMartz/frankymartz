@@ -62,7 +62,7 @@ $.getJSON(instagram_GET_url, function(response) {
 			}
 
 			html += ''.concat(
-				'<a class="instagram__item" href="', page_url, '">',
+				'<a class="instagram__item" href="', page_url, '" title="Take me to Instagram Page.">',
 					'<div class="instagram-item__info">',
 						'<span class="instagram-item-info__head">', title,'</span>',
 						'<em><time datetime="', Date(datetime).toString(), '">', relDatatime,'</time></em>',
@@ -78,11 +78,3 @@ $.getJSON(instagram_GET_url, function(response) {
 	$('.instagram').append(html);
 });
 
-/*
-if (window.matchMedia("(min-width: 400px)").matches) {
-  // the view port is at least 400 pixels wide
-  // the view port is at least 400 pixels wide
-} else {
-  // the view port is less than 400 pixels wide
-}
-*/

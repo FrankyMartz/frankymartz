@@ -1,7 +1,6 @@
 ################################################################################
 # Meta Data
 ################################################################################
-url: "http://frankymartz.com"
 author: Franky Martinez
 title: Franky Martinez
 subtitle: "Creative Developer"
@@ -13,6 +12,9 @@ twitter: http://twitter.com/frankymartz
 instagram: http://instagram.com/frankymartz
 
 cdn: "/assets/"
+
+# FOR DEVELOPMENT ONLY #########################################################
+url: localhost:4000
 
 
 ################################################################################
@@ -46,8 +48,12 @@ highlighter: pygments
 permalink: /:categories/:title
 
 markdown: kramdown
-lsi: true
 
 kramdown:
   input: GFM
 
+# FOR DEVELOPMENT ONLY #########################################################
+future: true
+show_drafts: true
+lsi: false
+limit_posts: 10

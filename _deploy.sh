@@ -8,19 +8,19 @@
 ################################################################################
 set -e -u
 
-
 #===============================================================================
 # Configuration
 #===============================================================================
-BASE_DIR=$(cd $(dirname $0) && pwd)
-BUCKET='s3://frankymartz.com/'
-SITE_DIR="./public/"
-# TEST SYNCRONIZATION
-DRY_RUN=true
+base_dir=$(cd $(dirname $0) && pwd)
+script=$(basename ${BASH_SOURCE[0]})
+bucket='s3://frankymartz.com/'
+site_dir="./public/"
+script_version="1.1.0"
+dryrun=""
 
-
-#===============================================================================
-# Logging - SUCCESS, WARNING, ERROR
+#===  FUNCTION  ================================================================
+#         NAME:  log
+#  DESCRIPTION:  success, warning, error
 #===============================================================================
 log() {
     local normal=$(tput sgr0)
@@ -48,6 +48,58 @@ log() {
     fi
 }
 
+#===  FUNCTION  ================================================================
+#         NAME:  usage
+#  DESCRIPTION:  Display usage information.
+#===============================================================================
+usage() {
+cat <<- EOF
+
+    Usage:      $0 [options]
+    Version:    ${script_version}
+
+    Options:
+    -d  Execute without server push
+    -h  Display this message
+    -v  Display script version
+
+EOF
+}
+
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+while getopts ":dhv" opt; do
+    case $opt in
+
+        d|dryrun   )
+            dryrun="--dryrun"
+            break
+            ;;
+
+        h|help     )
+            usage
+            exit 0
+            ;;
+
+        v|version  )
+            echo "$0 -- Version $script_version"
+            exit 0
+            ;;
+
+        \? )
+            echo -e "\n  Option does not exist : $OPTARG\n"
+            usage
+            exit 1
+            ;;
+
+    esac
+done
+shift $(($OPTIND-1))
+
+
 #===============================================================================
 # S3CMD - HOT SAUCE
 #===============================================================================
@@ -57,31 +109,33 @@ log 'green' "==> AWS: Start Bucket RSync\n"
 #= CSS =========================================================================
 log 'green' "==> Uploading CSS\n"
 # Cache Expire: 1 year
-aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --exclude "*.*" --include "*.css" --acl "public-read" --content-type 'text/css' --cache-control 'max-age=31536000' --content-encoding 'gzip'
+aws --color "on" s3 sync $dryrun $site_dir $bucket --delete --exclude "*.*" --include "*.css" --acl "public-read" --content-type 'text/css' --cache-control 'max-age=31536000' --content-encoding 'gzip'
 
 
 #= JS ==========================================================================
 log 'green' "==> Uploading JavaScript\n"
 ## Cache Expire: 1 year
-aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --exclude "*.*" --include "*.js" --acl "public-read" --content-type 'application/javascript' --cache-control 'max-age=31536000' --content-encoding 'gzip'
+aws --color "on" s3 sync $dryrun $site_dir $bucket --delete --exclude "*.*" --include "*.js" --acl "public-read" --content-type 'application/javascript' --cache-control 'max-age=31536000' --content-encoding 'gzip'
 
 
-##= MEDIA =======================================================================
+##= MEDIA ======================================================================
 log 'green' "==> Uploading media (png, jpg, svg, gif, ico)\n"
-## Cache Expire: 10 weeks
-aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --exclude "*.*" --include "*.png" --include "*.jpg" --include "*.svg" --include "*.gif" --include "*.ico" --acl "public-read" --cache-control 'max-age=6048000' --expires 'Sat, 20 Nov 2020 18:46:39 GMT'
+## Cache Expire: 1 year
+aws --color "on" s3 sync $dryrun $site_dir $bucket --delete --exclude "*.*" --include "*.png" --include "*.jpg" --include "*.svg" --include "*.gif" --include "*.ico" --acl "public-read" --cache-control 'max-age=31536000' --expires 'Sat, 20 Nov 2020 18:46:39 GMT'
 
 
-##= HTML ========================================================================
+##= HTML =======================================================================
 log 'green' "==> Uploading HTML\n"
-## Cache Expire: 2 hours
-aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --exclude "*.*" --include "*.html" --acl "public-read" --content-type 'text/html' --cache-control 'max-age=7200, must-revalidate' -content-encoding 'gzip' --content-language "en-US"
+## Cache Expire: none
+aws --color "on" s3 sync $dryrun $site_dir $bucket --delete --exclude "*.*" --include "*.html" --acl "public-read" --content-type 'text/html' --cache-control 'no-cache, no-store, must-revalidate' --content-encoding 'gzip' --content-language "en-US"
+## Cache Expire: 15 minutes
+# aws --color "on" s3 sync $site_dir $bucket --delete --exclude "*.*" --include "*.html" --acl "public-read" --content-type 'text/html' --cache-control 'max-age=900, must-revalidate' --content-encoding 'gzip' --content-language "en-US"
 
-
-##= OTHER =======================================================================
+##= OTHER ======================================================================
 log 'green' "==> Syncronize everything else\n"
-aws --color "on" s3 sync $SITE_DIR $BUCKET --dryrun $DRY_RUN --delete true --include "*.*" --exclude "*.html" --exclude "*.css" --exclude "*.js" --exclude "*.png" --exclude "*.jpg" --exclude "*.svg" --exclude "*.gif" --exclude "*.ico" --acl "public-read"
+aws --color "on" s3 sync $dryrun $site_dir $bucket --delete --include "*.*" --exclude "*.html" --exclude "*.css" --exclude "*.js" --exclude "*.png" --exclude "*.jpg" --exclude "*.svg" --exclude "*.gif" --exclude "*.ico" --acl "public-read"
 
-##===============================================================================
+##==============================================================================
 
 log 'green' "==> AWS: Complete\n"
+

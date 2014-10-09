@@ -1,0 +1,77 @@
+---
+layout: default
+jsAppend: 'home.js'
+octicon: true
+---
+<div class="l-cell--full l-flex--column home" role="main">
+  <!-- Blog -->
+
+  {% comment %}
+  <!--
+    Note To self:
+
+    Write some essays/posts then...OPEN THE GATES!
+
+    Franky
+  -->
+
+  <section class="home__section">
+    <h1 class="l-flex--gutters home-section__head">Journal</h1>
+    {% for post in site.posts limit:3 %}
+      <article class="l-flex--gutters home-blog__post">
+        <a class="home-blog-post__link" href="{{ post.url }}">
+          <h1 class="home-blog-post__head">{{ post.title }}</h1>
+          <p class="home-blog-post__excerpt">{{ post.excerpt | strip_html }}</p>
+          <small class="home-blog-post__details">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %d, %Y" }}
+            </time>
+          </small>
+        </a>
+      </article>
+    {% endfor %}
+  </section>
+  {% endcomment %}
+
+  <section class="home__section">
+    <div class="l-flex--gutters">
+      <a class="home-blog-post__link" href="/preface/" title="An introduction to my website reconstruction.">
+        <h1 class="home-blog-post__head">Franky Says Hello</h1>
+        <p class="home-blog-post__excerpt">
+          Welcome, to my little corner of the Web. I assembled some
+          widgets for a quick glimpse of my digital activities. Feel free to look
+          around.
+        </p>
+        <small class="home-blog-post__details">Nerdy Stuff Included</small>
+      </a>
+    </div>
+  </section>
+
+  <hr class="l-flex--gutters">
+
+  <!-- Twitter -->
+  <section class="home__section home-section--twitter">
+    <div class="l-flex--gutters twitter">
+      <a class="twitter-timeline" href="https://twitter.com/FrankyMartz" data-theme="light" data-link-color="#FC8472" data-chrome="noheader nofooter noborders noscrollbar transparent" data-tweet-limit="1" data-widget-id="476817430178578432">Tweets by @FrankyMartz</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+  </section>
+
+  <hr class="l-flex--gutters">
+
+  <!-- GitHub / Instagram -->
+  <div class="l-flex--gutters l-flex--row l-flex--wrap">
+      <!-- GitHub -->
+      <section class="l-cell--full home__section git">
+        <h1 class="home-section__head">GitHub</h1>
+      </section>
+
+      <!-- Instagram -->
+      <section class="l-cell--full home__section instagram">
+        <h1 class="home-section__head">Instagram</h1>
+      </section>
+
+  </div>
+
+</div>
+

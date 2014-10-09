@@ -1,0 +1,63 @@
+{
+  "name": "FrankyMartz.com",
+  "private": true,
+  "author": "Franky Martinez",
+  "version": "1.0.0",
+  "description": "The portfolio and website of Franky Martinez.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:FrankyMartz/frankymartz.git"
+  },
+  "scripts": {
+    "test": "echo \"Hello!\" && exit 0"
+  },
+  "jshintConfig": {
+    "node": "true",
+    "browser": "true",
+    "curly": "true",
+    "eqeqeq": "true",
+    "undef": "true",
+    "forin": "true",
+    "unused": "true",
+    "multistr": "true"
+  },
+  "browserify-shim": {
+    "jquery": "global:$"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "devDependencies": {
+    "browser-sync": "*",
+    "browserify": "*",
+    "browserify-shim": "*",
+    "del": "*",
+    "glob": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-csso": "*",
+    "gulp-gzip": "*",
+    "gulp-htmlmin": "*",
+    "gulp-if": "*",
+    "gulp-minify-css": "*",
+    "gulp-notify": "*",
+    "gulp-rev-all": "*",
+    "gulp-size": "*",
+    "gulp-streamify": "*",
+    "gulp-stylus": "*",
+    "gulp-uglify": "*",
+    "gulp-util": "*",
+    "gulp-watch": "*",
+    "lazypipe": "*",
+    "pretty-ms": "*",
+    "stylus": "*",
+    "through2": "*",
+    "vinyl-source-stream": "*",
+    "watchify": "*"
+  },
+  "dependencies": {
+    "fastclick": "*"
+  }
+}

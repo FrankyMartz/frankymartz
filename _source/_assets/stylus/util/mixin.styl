@@ -1,0 +1,81 @@
+// =============================================================================
+// Mixins
+// "Drive Responsibly."
+//
+// Author:	Franky Martinez <frankymartz@gmail.com>
+// Require:	"../util/functions.styl"
+// =============================================================================
+
+@require "./function"
+
+// Typography
+// =============================================
+fontSmoothing($enable)
+	if $enable
+		-moz-osx-font-smoothing: grayscale
+		-webkit-font-smoothing: antialiased
+		font-smoothing: antialiased
+	else
+		-moz-osx-font-smoothing: auto
+		-webkit-font-smoothing: subpixel-antialiased
+		font-smoothing: subpixel-antialiased
+
+
+// Debug
+// =============================================
+debug()
+	background:#FFFFEE
+	outline: 1px solid red !important
+
+hide()
+	display: none
+
+unsized()
+	img:not([width]):not([height])
+		outline: 2px solid red !important
+
+
+// Hacks
+// =============================================
+clearfix()
+	&:after
+		content: "."
+		display: block
+		height: 0
+		clear: both
+		visibility: hidden
+	zoom: 1
+
+
+// Responsive Breakpoints (Mobile First)
+// =============================================
+responsiveBreakPoint($media)
+	@media only screen and (min-width: $media + 1)
+		{block}
+
+// Image Handling
+// =============================================
+image($path, $width=false, $height=false)
+	$width ?= imageWidth($path)
+	$height ?= imageHeight($path)
+	background-image: url($path)
+	background-size: $width $height
+
+
+retinafy($path)
+	$width = imageWidth($path)
+	$height = imageHeight($path)
+	background-image: url($image)
+	background-size: $width $height
+	@media only screen and (min--moz-device-pixel-ratio: 1.3),
+	only screen and (-o-min-device-pixel-ratio: 2.6/2),
+	only screen and (-webkit-min-device-pixel-ratio: 1.3),
+	only screen and (min-device-pixel-ratio: 1.3),
+	only screen and (min-resolution: 1.3dppx)
+		$ext = extname($path)
+		$pathHD = pathjoin(dirname($path), basename($path, $ext) + "@2x" + $ext)
+		$widthHD = imageWidth($pathHD)
+		$heightHD = imageHeight($pathHD)
+		background-image: url($pathHD)
+		background-size: $widthHD $heightHD
+

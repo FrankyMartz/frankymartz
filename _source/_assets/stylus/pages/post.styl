@@ -1,0 +1,54 @@
+/*! ==========================================
+ * Post
+ *
+ * .wrap--post
+ * .post
+ * .post__header
+ * .post-header__meta
+ *
+ * ========================================== */
+
+.wrap--post
+	margin-left: auto
+	margin-right: auto
+	margin-bottom: 5rem
+
+.post__header
+	font-family: $font.sans
+	margin-top: 1em
+	margin-bottom: 1.5em
+	& > h1
+		margin-bottom: 1rem
+
+.post-header__excerpt
+	color: $color.text.light
+
+.post-header__meta
+	color: $color.salmon.base
+	font-size: pxToEm(12)
+
+
++responsiveBreakPoint($view.sm)
+	.post__header
+		margin-bottom: 2.5em
+		& > h1
+			text-align: center
+
+	.post-header__meta
+		position: relative
+		text-align: center
+		& > time
+			position: relative
+			z-index: 1984
+			padding: 0 1em
+			background-color: $color-background.body
+		&:after
+			position: relative
+			display: block
+			height: 1px
+			width: 100%
+			top: -1.1em
+			border: 0
+			content: ""
+			z-index: 0
+			background-image: linear-gradient(left, rgba($color.salmon.base,0), rgba($color.salmon.base,0.75), rgba($color.salmon.base,0))

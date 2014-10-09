@@ -1,0 +1,26 @@
+/*! ==========================================
+ * Haunted Elements Department
+ *
+ * Boo!
+ * ========================================== */
+
+@require "./mixin"
+@require "../global/variables"
+
+createVisibility($type="")
+	$type = $type ? "--" + $type : ""
+	.hidden{$type}
+		display: none
+
+	.transparent{$type}
+		visibility: hidden
+	
+
+createVisibility()
+
++responsiveBreakPoint($view.sm)
+	createVisibility('md')
+
++responsiveBreakPoint($view.md)
+	createVisibility('lg')
+

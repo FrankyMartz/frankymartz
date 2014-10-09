@@ -1,0 +1,10 @@
+public/
+_drafts/
+_source/assets/css/*.css
+_source/assets/js/*.js
+_source/assets/img/
+node_modules/
+.DS_Store
+*.swp
+tags
+

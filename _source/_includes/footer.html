@@ -1,0 +1,50 @@
+<footer class="l-cell--full l-flex--column footer">
+
+  <div class="l-flex--gutters l-flex--row footer__nav">
+
+    <div class="l-cell--full l-cell-md--reset footer-nav__connect">
+      <div class="footer-nav-connect__header">{{ site.title }}</div>
+      <p>{% include email_footer.html %}</p>
+    </div>
+
+    <div class="l-cell--full l-cell-md--reset footer-nav__description">
+      <span>{{ site.description }}</span>
+    </div>
+
+    <ul class="l-cell--full l-cell-md--reset footer-nav__social">
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.github }}" title="GitHub - @frankymartz">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-github-alt fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.twitter }}" title="Twitter - @frankymartz">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.instagram }}" title="Instagram - @frankymartz">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+      <li>
+        <a class="fa-stack fa-lg" href="{{ site.url }}/feed.xml" title="RSS update me">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="l-flex--gutters l-flex--column footer-copyright" role="contentinfo">
+    <p>&copy; {{ site.author }} 2014. All Rights Reserved.</p>
+    <a class="footer-copyright__cc" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="Creative Commons License Page">
+      <img width="89" height="17" src="{{ "img/global/copyright-creative-commons.png" | prepend: site.cdn}}"  title="Creative Commons License" alt="(CC)BY-NC-SA 4.0"/>
+    </a>
+  </div>
+
+</footer>

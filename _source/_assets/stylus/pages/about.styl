@@ -1,0 +1,82 @@
+/*! ==========================================
+ * About
+ *
+ * .about
+ * .about__section
+ * .about__biography
+ * .about-bio__short
+ * .about-bio__long
+ * .about__colophon
+ * .about-colophon__fig
+ * .about-colophon-fig__img
+ * .about-colophon-fig__title
+ * .about-colophon-fig__details
+ *
+ * ========================================== */
+
+.about
+	margin-top: 1em
+	align-items: center
+	animation: fade--in 0.675s ease-in-out
+
+.about__section
+	width: 100%
+	margin-bottom: 2rem
+
+.about-contact__email
+	display: none
+
+.no-js .about-contact__email
+	display: inline
+	font-weight: 700
+
+/*! Constrain width to figure image width */
+.about-colophon__fig
+	float: none
+	width: 100%
+	max-width: 360px;
+	min-width: 235px;
+	margin-left: auto
+	margin-right: auto
+
+.about-colophon-fig__title
+	font-weight: 900
+	font-size: 1rem
+	text-transform: capitalize
+
+.about-colophon-fig__details
+	color: lighten($color.text.base, 30%)
+	& > .fa
+		color: lighten($color.text.base, 20%)
+		padding-left: 0.4em
+		padding-right: 0.4em
+
+
+
+/*! About: Biography
+ * ===========================================*/
+
+.about__bio--details
+	display: none
+	height: 0
+	opacity: 0
+
+
+
+/*! About: Screen >= Tablets
+ * ===========================================*/
+
++responsiveBreakPoint($view.sm)
+	.about-colophon__fig
+		margin-top: 2rem
+		margin-bottom: 2.5rem
+
+
+
+
+/*! figure image is slightly awkward */
++responsiveBreakPoint(700px)
+	.about-colophon__fig
+		float: right
+		width: 45%
+		margin: 0.4rem 0 1rem 1rem

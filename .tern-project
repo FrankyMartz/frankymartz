@@ -1,14 +1,18 @@
 {
   "libs": [
     "browser",
-    "jquery"
+    "chai",
+    "ecmascript",
+    "jquery",
+    "underscore"
   ],
   "loadEagerly": [],
-  "dontLoad": [
-    "./public/**/*.js",
-    "./_source/assets/js/**/*.js"
-  ],
+  "dontLoad": [],
   "plugins":{
+    "doc_comment": {
+      "strong": true
+    },
+    "complete_strings": {},
     "node": {}
   }
 }

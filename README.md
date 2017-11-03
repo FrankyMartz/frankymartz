@@ -1,4 +1,4 @@
-## The portfolio &amp; website of [Franky Martinez][frankymartz]
+## The portfolio &amp; website of Franky Martinez
 
 “*Here there be dragons*.”
 
@@ -39,7 +39,6 @@ Thanks for visiting.
 
 **&copy; Franky Martinez 2014**
 
-[frankymartz]: http://frankymartz.com			"FrankyMartz"
 [jekyll]: http://jekyllrb.com					"Jekyll"
 [gulpjs]: http://gulpjs.com						"GulpJS"
 [browserify]: http://browserify.org             "Browserify"
